@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_mainpage"
+            android:icon="@drawable/ic_pagina_principal"
+            android:title="Página Principal" />
+        <item
+            android:id="@+id/nav_albuns"
+            android:icon="@drawable/ic_meus_albuns"
+            android:title="Meus Álbuns" />
+        <item
+            android:id="@+id/nav_galeria"
+            android:icon="@drawable/ic_galeria"
+            android:title="Galeria de fotos" />
+
+    </group>
+
+    <group android:id="@+id/grupo2" android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_sair"
+                android:icon="@drawable/ic_sair"
+                android:title="Sair" />
+    </group>
+
+
+</menu>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff9600</color>
+    <color name="colorPrimaryDark">#ff9650</color>
+    <color name="colorAccent">#ff9600</color>
+    <color name="colorBotoes">#3b5998</color>
+    <color name="colorDivider">#9e9e9e</color>
+    <color name="corfundo">#000000</color>
+</resources>

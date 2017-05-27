@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">PhotoNow</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings da página de login -->
+    <string name="username">Nome de utilizador</string>
+    <string name="passe">Palavra-passe</string>
+    <string name="iniciar_sessao">Iniciar Sessão</string>
+    <string name="registo_conta">Ainda não tens uma conta? Regista-te.</string>
+    <string name="esquece_passe">Esqueceste-te da palavra-passe?</string>
+    <string name="prompt_email">Nome de utilizador</string>
+    <string name="prompt_password">Palavra-passe</string>
+    <string name="action_sign_in">Iniciar Sessão</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">A palavra-passe está incorreta.</string>
+    <string name="error_field_required">Este campo deve ser preenchido.</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
