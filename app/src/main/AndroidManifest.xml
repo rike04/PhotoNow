@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".FullImage" />
         <activity android:name=".AdapterImagens" />
-        <activity android:name=".AdapterSwipe"></activity>
+        <activity android:name=".AdapterSwipe" />
+        <activity android:name=".Editar_Foto"></activity>
     </application>
 
 </manifest>
