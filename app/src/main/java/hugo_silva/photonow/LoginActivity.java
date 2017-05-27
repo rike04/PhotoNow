@@ -100,11 +100,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private Boolean isPassValida(String password) {
-        return password.length() > 5;
+        return password.length() >= 5;
     }
 
     private Boolean isUsernameValido (String username) {
-        return username.length() > 5;
+        return username.length() >= 5;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
