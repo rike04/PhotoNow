@@ -14,13 +14,8 @@ public class Ficheiro {
 
     private static Repositorio repo = null;
 
-    public Ficheiro() {
-        repo = new Repositorio();
-    }
-
     public static Repositorio getRepositorio(){
-        //    if (repo == null)
-        //        repo = new Repositorio();
+        if (repo == null) repo = new Repositorio();
         return repo;
     }
 
@@ -32,8 +27,7 @@ public class Ficheiro {
             out.writeObject(repo);
             out.close();
             fileOut.close();
-            System.out.printf(
-                    "Serialized data is saved in " + filename);
+            System.out.printf("Serialized data is saved in " + filename);
         } catch (IOException ex) {
             System.out.println("Erro: " + ex.getMessage());
         }
@@ -47,8 +41,7 @@ public class Ficheiro {
             repo = (Repositorio) in.readObject();
             in.close();
             fileIn.close();
-            System.out.printf(
-                    "File " + filename + " read!");
+            System.out.printf("File " + filename + " read!");
         } catch (IOException ex) {
             System.out.println("Erro: " + ex.getMessage());
         } catch (ClassNotFoundException ex) {
