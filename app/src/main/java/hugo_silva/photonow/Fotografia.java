@@ -10,6 +10,7 @@ import java.util.Date;
 
 public class Fotografia {
 
+    private int id;
     private String descricao;
     private Date dataUpload;
     private String localizacao;

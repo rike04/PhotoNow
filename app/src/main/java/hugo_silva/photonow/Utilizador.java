@@ -12,7 +12,7 @@ public class Utilizador {
     private final int id;
     private String username;
     private String password;
-    List<Album> albuns;
+    private List<Album> albuns;
 
     public Utilizador(String username, String password, int id) {
         this.id = id;
@@ -52,5 +52,10 @@ public class Utilizador {
 
     public int getId() {
         return id;
+    }
+
+    public Album getAlbumbyId(int id) {
+
+        return null;
     }
 }
