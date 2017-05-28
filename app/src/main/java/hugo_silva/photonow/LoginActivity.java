@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         viewProgresso = findViewById(R.id.login_progress);
         viewLoginForm = findViewById(R.id.login_form);
 
+        //Adicionar o método iniciarSessao como onClick() para o botão de inicio de sessão
         Button botaoInicioSessao = (Button) findViewById(R.id.sign_in_button);
         botaoInicioSessao.setOnClickListener(new View.OnClickListener() {
 
