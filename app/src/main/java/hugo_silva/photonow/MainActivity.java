@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -45,10 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setTitle("Página Principal");
 
         navigationView.getMenu().getItem(0).setChecked(true);
-
-        TinyDB t = new TinyDB(getApplicationContext());
-        String x = t.getString("username");
-        Log.d(getClass().getSimpleName(), x);
     }
 
 
