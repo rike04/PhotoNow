@@ -27,19 +27,29 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="250dp"
         android:background="@drawable/border"
         android:layout_gravity="center">
 
-        <TextView
+        <Button
+            android:id="@+id/botao_adicionar_album"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Para arrastar ou selecionar uma foto de capa"/>
+            android:minHeight="60dp"
+            android:minWidth="60dp"
+            android:background="@drawable/ic_adicionar"
+            android:layout_centerInParent="true"/>
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/img_capa_album"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
 
 
     <LinearLayout
@@ -50,8 +60,6 @@
         android:layout_marginTop="40dp"
         android:orientation="vertical">
 
-
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,9 +69,6 @@
         android:ems="10"
         android:id="@+id/editText" />
 
-
-
-
     </LinearLayout>
 
     <Button
@@ -72,5 +77,6 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button5" />
+        android:id="@+id/botao_prox_passo1" />
+
 </LinearLayout>

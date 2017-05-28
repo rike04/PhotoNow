@@ -3,6 +3,8 @@ package hugo_silva.photonow;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +26,12 @@ public class AlbunsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_albuns, container, false);
-        setOnClickBotoes(v);
+        setOnClickBotoes(v, container.getId());
 
         current_user = ((MainActivity)getActivity()).getCurrentUser();
 
@@ -44,48 +45,46 @@ public class AlbunsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstances) {
         super.onViewCreated(view, savedInstances);
-        getAlbunsPrivados();
+        showAlbunsPrivados();
     }
 
     //Atribui os onClickListeners aos botoes do layout
-    private void setOnClickBotoes(View v) {
-
-        Button viewBotaoP = (Button) v.findViewById(R.id.botaoPrivado);
+    private void setOnClickBotoes(View v, final int containerID) {
+        final Button viewBotaoP = (Button) v.findViewById(R.id.botao_privado);
         viewBotaoP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAlbunsPrivados();
+                showAlbunsPrivados();
             }
         });
 
-        Button viewBotaoPub = (Button) v.findViewById(R.id.botaoPublico);
+        Button viewBotaoPub = (Button) v.findViewById(R.id.botao_publico);
         viewBotaoPub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getAlbunsPublicos();
+                showAlbunsPublicos();
             }
         });
 
-        Button viewBotaoNovo = (Button) v.findViewById(R.id.botaoNovo);
-        viewBotaoPub.setOnClickListener(new View.OnClickListener() {
+        Button viewBotaoNovo = (Button) v.findViewById(R.id.botao_novo);
+        viewBotaoNovo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                novoAlbum();
+                novoAlbum(containerID);
             }
         });
-
     }
 
     //Mostra todos os albuns do utilizador com privacidade privada
-    private void getAlbunsPrivados() {
-        //Reiniciar as visibilidades da grid view e da text view
-        if (current_user.countAlbunsPrivados() == 0) {
+    private void showAlbunsPrivados() {
+        if (current_user.countAlbunsPrivados() > 0) {
             //Esconde a mensagem de erro
             textoGrid.setVisibility(View.GONE);
 
             //Mostra a grid view
             gridView.setVisibility(View.VISIBLE);
-            gridView.setAdapter(new AdapterImagens(getView().getContext()));
+            gridView.setAdapter(new AdapterImagens(getView().getContext(),
+                    current_user.getAlbunsPrivados()));
         } else {
             gridView.setVisibility(View.GONE);
             // É mostrada a mensagem sobre a inexistência de álbuns do utilizador
@@ -95,17 +94,29 @@ public class AlbunsFragment extends Fragment {
     }
 
     //Mostra todos os albuns do utilizador com privacidade pública
-    private void getAlbunsPublicos(){
+    private void showAlbunsPublicos(){
         if(current_user.countAlbunsPublicos() > 0) {
+            //Esconde a mensagem de erro
+            textoGrid.setVisibility(View.GONE);
 
+            //Mostra a grid view
+            gridView.setVisibility(View.VISIBLE);
+            gridView.setAdapter(new AdapterImagens(getView().getContext()));
         } else {
-
+            gridView.setVisibility(View.GONE);
+            // É mostrada a mensagem sobre a inexistência de álbuns do utilizador
+            textoGrid.setText("Não existem álbuns públicos.");
+            textoGrid.setVisibility(View.VISIBLE);
         }
     }
 
-    private void novoAlbum() {
-
+    private void novoAlbum(int containerID) {
+        CriarAlbum c = new CriarAlbum();
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction()
+                .replace(containerID, c)
+                .addToBackStack(null)
+                .commit();
     }
-
 
 }

@@ -13,7 +13,9 @@ import java.util.Map;
 
 public class Album implements Serializable{
 
-    private static int id;
+    private int id;
+    private int idCapa;
+    private Fotografia capa;
     private Map<Integer, Fotografia> fotografias;
     private String titulo;
     private Boolean privado;
@@ -21,7 +23,7 @@ public class Album implements Serializable{
     private Date data;
     private List<String> comentarios;
 
-    public Album(String titulo) {
+    public Album(String titulo, int idImagem) {
         this.id += 1;
         this.titulo = titulo;
         fotografias = new HashMap<>();
@@ -29,6 +31,7 @@ public class Album implements Serializable{
         descricao = null;
         data = new Date();
         comentarios = new ArrayList<>();
+        idCapa = idImagem;
     }
 
     public String getTitulo() {
@@ -47,5 +50,8 @@ public class Album implements Serializable{
         return fotografias.size();
     }
 
+    public int getIdCapa(){
+        return idCapa;
+    }
 
 }

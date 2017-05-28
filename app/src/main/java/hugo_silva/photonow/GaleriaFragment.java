@@ -29,10 +29,7 @@ public class GaleriaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_galeria, container, false);
 
         GridView gridView = (GridView) view.findViewById(R.id.galeria);
-
         gridView.setAdapter(new AdapterImagens(view.getContext()));
-
-
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

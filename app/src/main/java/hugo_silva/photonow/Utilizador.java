@@ -59,6 +59,12 @@ public class Utilizador implements Serializable {
         return null;
     }
 
+    public void addAlbum(Album album) {
+        if(album != null) {
+            getAlbuns().add(album);
+        }
+    }
+
     @Override
     public String toString() {
         return "Utilizador{" +
@@ -77,7 +83,33 @@ public class Utilizador implements Serializable {
     }
 
     public int countAlbunsPublicos() {
-        return 0;
+        int contador = 0;
+        for (Album a: albuns) {
+            if (!a.getPrivado()) contador++;
+        }
+        return contador;
+    }
+
+    public List<Album> getAlbunsPublicos() {
+        List<Album> albunsPublicos = new ArrayList<>();
+
+        for(Album a: albuns){
+            if(!a.getPrivado()) {
+                albunsPublicos.add(a);
+            }
+        }
+        return albunsPublicos;
+    }
+
+    public List<Album> getAlbunsPrivados() {
+        List<Album> albunsPrivados = new ArrayList<>();
+
+        for(Album a: albuns){
+            if(a.getPrivado()) {
+                albunsPrivados.add(a);
+            }
+        }
+        return albunsPrivados;
     }
 
 }

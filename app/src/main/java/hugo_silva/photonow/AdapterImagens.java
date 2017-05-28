@@ -7,14 +7,28 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.List;
+
 public class AdapterImagens extends BaseAdapter {
 
     private Context context;
-
-    public Integer[] imagens = {R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo,};
+   // public Integer[] imagens = {R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo,};
+    public Integer[] imagens;
 
     public AdapterImagens(Context c) {
         context = c;
+    }
+
+    public AdapterImagens(Context c, List<Album> lista) {
+        this.context = c;
+        imagens = new Integer[lista.size()];
+        setImagensIDS(lista);
+    }
+
+    private void setImagensIDS(List<Album> l) {
+        for(int i = 0; i < imagens.length; i++) {
+            imagens[i] = l.get(i).getIdCapa();
+        }
     }
 
     @Override
@@ -26,7 +40,6 @@ public class AdapterImagens extends BaseAdapter {
     public Object getItem(int position) {
         return imagens[position];
     }
-
 
     @Override
     public long getItemId(int position) {
@@ -42,4 +55,5 @@ public class AdapterImagens extends BaseAdapter {
         imageView.setLayoutParams(new GridView.LayoutParams(225, 225));
         return imageView;
     }
+
 }

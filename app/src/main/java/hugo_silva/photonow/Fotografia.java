@@ -17,6 +17,9 @@ public class Fotografia implements Serializable{
     private Date dataUpload;
     private String localizacao;
     private Image imagem;
+    private int idImagem;
+
+
 
 
 }
