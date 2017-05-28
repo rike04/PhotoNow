@@ -13,6 +13,7 @@ public class Album implements Serializable{
 
     private int id;
     private Map<Integer, Fotografia> fotografias;
+    private Boolean privacidade;
     private String descricao;
     private Date data;
     private List<String> comentarios;
