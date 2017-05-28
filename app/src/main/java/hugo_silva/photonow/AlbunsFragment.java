@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -23,7 +24,38 @@ public class AlbunsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_albuns, container, false);
+        View v = inflater.inflate(R.layout.fragment_albuns, container, false);
+        setOnClickBotoes(v);
+        return v;
+    }
+
+    //Atribui os onClickListeners aos botoes do layout
+    private void setOnClickBotoes(View v) {
+        Button viewBotaoP = (Button) v.findViewById(R.id.botaoPrivado);
+        viewBotaoP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getAlbunsPrivados();
+            }
+        });
+
+        Button viewBotaoPub = (Button) v.findViewById(R.id.botaoPublico);
+        viewBotaoPub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getAlbunsPublicos();
+            }
+        });
+    }
+
+    //Mostra todos os albuns do utilizador com privacidade privada
+    private void getAlbunsPrivados() {
+
+    }
+
+    //Mostra todos os albuns do utilizador com privacidade pública
+    private void getAlbunsPublicos(){
+
     }
 
 }
