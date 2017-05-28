@@ -1,19 +1,19 @@
 package hugo_silva.photonow;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -23,18 +23,24 @@ import static android.app.Activity.RESULT_OK;
 public class CriarAlbum extends Fragment {
 
     private static final int SELECT_PHOTO = 100;
-
-    Button botaoAdicionar;
+    private Button botaoAdicionar;
+    private Bitmap capa = null;
+    private Bundle savedState = null;
+    private EditText viewTitulo;
+    private ImageView viewCapa;
 
     public CriarAlbum() {
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_criar_album, container, false);
+
+        viewTitulo = (EditText) v.findViewById(R.id.titulo_album);
+        viewCapa = (ImageView) v.findViewById(R.id.img_capa_album);
 
         botaoAdicionar = (Button) v.findViewById(R.id.botao_adicionar_album);
         botaoAdicionar.setOnClickListener(new View.OnClickListener() {
@@ -48,10 +54,23 @@ public class CriarAlbum extends Fragment {
         botaoProximoPasso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                proximoPasso();
+                proximoPasso(container.getId());
             }
         });
 
+        if(savedInstanceState != null && savedState == null) {
+            savedState = savedInstanceState.getBundle("Album");
+        }
+        if(savedState != null) {
+            capa = Util.arrayToBitmap(savedState.getByteArray("imagem"));
+            ImageView image = (ImageView) v.findViewById(R.id.img_capa_album);
+            image.setImageBitmap(capa);
+            image.setVisibility(View.VISIBLE);
+
+            EditText texto = (EditText) v.findViewById(R.id.titulo_album);
+            texto.setText(savedState.getString("titulo"));
+        }
+        savedState = null;
         return v;
     }
 
@@ -66,7 +85,6 @@ public class CriarAlbum extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         switch (requestCode) {
             case SELECT_PHOTO:
                 if (resultCode == RESULT_OK) {
@@ -78,18 +96,61 @@ public class CriarAlbum extends Fragment {
                         e.printStackTrace();
                     }
                     Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                    ImageView image = (ImageView) getView().findViewById(R.id.img_capa_album);
-                    image.setImageURI(selectedImage);// To display selected image in image view
-                    //image.setImageBitmap(yourSelectedImage);
-                    image.setVisibility(View.VISIBLE);
+                    viewCapa.setImageBitmap(yourSelectedImage);
+                    capa = yourSelectedImage;
+                    viewCapa.setVisibility(View.VISIBLE);
                     botaoAdicionar.setVisibility(View.GONE);
                 }
         }
     }
 
-
-    private void proximoPasso() {
-
+    private void proximoPasso(final int containerID) {
+        if(capa != null) {
+            if(verificaTitulo(viewTitulo.getText().toString())) {
+                CriarAlbum2 c = new CriarAlbum2();
+                c.receiveData(capa, viewTitulo.getText().toString());
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction()
+                        .replace(containerID, c)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        }
     }
 
+    private Boolean verificaTitulo(String titulo) {
+        if(titulo != null && titulo.length() > 3) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        savedState = saveState(); /* vstup defined here for sure */
+        viewTitulo = null;
+        viewCapa = null;
+    }
+
+    private Bundle saveState() { /* called either from onDestroyView() or onSaveInstanceState() */
+        Bundle state = new Bundle();
+        state.putString("titulo", viewTitulo.getText().toString());
+        if(viewCapa.getVisibility() == View.VISIBLE) {
+            state.putByteArray("imagem", Util.bitmapToArray((Bitmap) ((BitmapDrawable)viewCapa.getDrawable()).getBitmap()));
+        } else {
+            state.putByteArray("imagem", null);
+        }
+        return state;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        /* If onDestroyView() is called first, we can use the previously savedState but we can't call saveState() anymore */
+        /* If onSaveInstanceState() is called first, we don't have savedState, so we need to call saveState() */
+        /* => (?:) operator inevitable! */
+        outState.putBundle("album", (savedState != null) ? savedState : saveState());
+    }
 }
