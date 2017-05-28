@@ -207,4 +207,5 @@ public class LoginActivity extends AppCompatActivity {
         usernameView.requestFocus();
         return false;
     }
+
 }
