@@ -18,9 +18,9 @@ import android.widget.TextView;
  */
 public class AlbunsFragment extends Fragment {
 
-    Utilizador current_user;
-    GridView gridView;
-    TextView textoGrid;
+    private Utilizador current_user;
+    private GridView gridView;
+    private TextView textoGrid;
 
     public AlbunsFragment() {
         // Required empty public constructor
