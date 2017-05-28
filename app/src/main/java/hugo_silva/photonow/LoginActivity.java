@@ -16,8 +16,10 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Verifica se a aplicação tem como conta pré-definida "admin1"
+        verificaIntegridade();
         /*
         //Testes
         Utilizador u1 = new Utilizador("Teste1", "teste1", 1);
@@ -105,10 +109,9 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
 
-            if(true) {
-
+            if(verificaLogin(username, password)) {
+                showProgress(true);
                 //Iniciar a atividade main
                 Intent intent = new Intent(this, MainActivity.class);
                 TinyDB t = new TinyDB(getApplicationContext());
@@ -121,15 +124,9 @@ public class LoginActivity extends AppCompatActivity {
                 usernameView.setError("Username não existe.");
             }
 
-            //Confirmar que a aplicação já foi aberta e o login feito
-            /*SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
-            SharedPreferences.Editor edt = pref.edit();
-            edt.putBoolean("activity_executed", true);
-            edt.putString("username", username); */
         }
 
     }
-
 
     private Boolean isPassValida(String password) {
         return password.length() >= 5;
@@ -170,5 +167,41 @@ public class LoginActivity extends AppCompatActivity {
             viewProgresso.setVisibility(show ? View.VISIBLE : View.GONE);
             viewLoginForm.setVisibility(show ? View.GONE : View.VISIBLE);
         }
+    }
+
+    private void verificaIntegridade() {
+        TinyDB t = new TinyDB(getApplicationContext());
+        ArrayList<Object> utilizadores = t.getListObject("array", Utilizador.class);
+
+        if(utilizadores.size() > 0) {
+            for(int i = 0; i < utilizadores.size(); i++) {
+                Utilizador u = (Utilizador) utilizadores.get(i);
+                if (u.getUsername().equals("admin1")) {
+                    return;
+                }
+            }
+        }
+        //Caso o array utilizadores esteja vazio ou não contenha a conta "admin1", será criada e
+        //adicionada ao array
+        Utilizador admin = new Utilizador("admin1", "admin1", 0);
+        utilizadores.add(admin);
+        t.putListObject("array", utilizadores);
+    }
+
+    private Boolean verificaLogin(String username, String password) {
+        TinyDB t = new TinyDB(getApplicationContext());
+        ArrayList<Object> utilizadores = t.getListObject("array", Utilizador.class);
+
+        if(utilizadores.size() > 0) {
+            for(int i = 0; i < utilizadores.size(); i++) {
+                Utilizador u = (Utilizador) utilizadores.get(i);
+                if (u.getUsername().equals(username)) {
+                    if(u.getPassword().equals(password)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
