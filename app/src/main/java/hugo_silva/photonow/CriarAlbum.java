@@ -82,6 +82,7 @@ public class CriarAlbum extends Fragment {
                     image.setImageURI(selectedImage);// To display selected image in image view
                     //image.setImageBitmap(yourSelectedImage);
                     image.setVisibility(View.VISIBLE);
+                    botaoAdicionar.setVisibility(View.GONE);
                 }
         }
     }
