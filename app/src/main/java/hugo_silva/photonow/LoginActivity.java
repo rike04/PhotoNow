@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //Verifica se a aplicação tem como conta pré-definida "admin1"
         verificaIntegridade();
+
         /*
         //Testes
         Utilizador u1 = new Utilizador("Teste1", "teste1", 1);
@@ -109,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-
             if(verificaLogin(username, password)) {
                 showProgress(true);
                 //Iniciar a atividade main
@@ -119,9 +119,6 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("username", username);
                 startActivity(intent);
                 finish();
-
-            } else {
-                usernameView.setError("Username não existe.");
             }
 
         }
@@ -188,7 +185,7 @@ public class LoginActivity extends AppCompatActivity {
         t.putListObject("array", utilizadores);
     }
 
-    private Boolean verificaLogin(String username, String password) {
+    private Boolean verificaLogin(String username, String password){
         TinyDB t = new TinyDB(getApplicationContext());
         ArrayList<Object> utilizadores = t.getListObject("array", Utilizador.class);
 
@@ -198,10 +195,16 @@ public class LoginActivity extends AppCompatActivity {
                 if (u.getUsername().equals(username)) {
                     if(u.getPassword().equals(password)) {
                         return true;
+                    } else {
+                        passwordView.setError(getString(R.string.error_incorrect_password));
+                        passwordView.requestFocus();
+                        return false;
                     }
                 }
             }
         }
+        usernameView.setError(getString(R.string.error_invalid_email));
+        usernameView.requestFocus();
         return false;
     }
 }
