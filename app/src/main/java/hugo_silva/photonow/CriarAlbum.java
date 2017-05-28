@@ -23,7 +23,6 @@ import static android.app.Activity.RESULT_OK;
 public class CriarAlbum extends Fragment {
 
     private static final int SELECT_PHOTO = 100;
-    String imgDecodableString;
 
     Button botaoAdicionar;
 
@@ -58,20 +57,20 @@ public class CriarAlbum extends Fragment {
 
     private void adicionarAlbum() {
         // Create intent to Open Image applications like Gallery, Google Photos
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK, Uri.parse(
-                "file:/media/internal/images/media"));
+        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/*");
         // Start the Intent
         startActivityForResult(galleryIntent, SELECT_PHOTO);
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
             case SELECT_PHOTO:
                 if (resultCode == RESULT_OK) {
-                    Uri selectedImage = imageReturnedIntent.getData();
+                    Uri selectedImage = data.getData();
                     InputStream imageStream = null;
                     try {
                         imageStream = getActivity().getContentResolver().openInputStream(selectedImage);
@@ -81,9 +80,10 @@ public class CriarAlbum extends Fragment {
                     Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
                     ImageView image = (ImageView) getView().findViewById(R.id.img_capa_album);
                     image.setImageURI(selectedImage);// To display selected image in image view
+                    //image.setImageBitmap(yourSelectedImage);
+                    image.setVisibility(View.VISIBLE);
                 }
         }
-
     }
 
 
