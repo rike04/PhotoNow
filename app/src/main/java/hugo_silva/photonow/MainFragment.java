@@ -28,10 +28,8 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
-        TinyDB t = new TinyDB(getActivity().getApplicationContext());
-        ArrayList<Object> x = t.getListObject("array", Utilizador.class);
-        Utilizador u = (Utilizador) x.get(0);
-        Log.d(getClass().getSimpleName(), u.getUsername());
+       Utilizador u = ((MainActivity)getActivity()).getCurrentUser();
+
         TextView vi = (TextView) v.findViewById(R.id.mainview);
         vi.setText(u.getUsername());
 

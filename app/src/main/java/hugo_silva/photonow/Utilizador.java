@@ -68,4 +68,16 @@ public class Utilizador implements Serializable {
                 '}';
     }
 
+    public int countAlbunsPrivados() {
+        int contador = 0;
+        for (Album a: albuns) {
+             if (a.getPrivado()) contador++;
+        }
+        return contador;
+    }
+
+    public int countAlbunsPublicos() {
+        return 0;
+    }
+
 }

@@ -28,10 +28,14 @@ public class LoginActivity extends AppCompatActivity {
     private AutoCompleteTextView usernameView;
     private EditText passwordView;
 
+    private TinyDB database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        database = new TinyDB(getApplicationContext());
 
         //Verifica se a aplicação tem como conta pré-definida "admin1"
         verificaIntegridade();
@@ -114,9 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                 showProgress(true);
                 //Iniciar a atividade main
                 Intent intent = new Intent(this, MainActivity.class);
-                TinyDB t = new TinyDB(getApplicationContext());
-                t.putString("username", username);
-                intent.putExtra("username", username);
+                intent.putExtra("current_user", getUtilizador(username));
                 startActivity(intent);
                 finish();
             }
@@ -167,8 +169,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void verificaIntegridade() {
-        TinyDB t = new TinyDB(getApplicationContext());
-        ArrayList<Object> utilizadores = t.getListObject("array", Utilizador.class);
+        ArrayList<Object> utilizadores = database.getListObject("array", Utilizador.class);
 
         if(utilizadores.size() > 0) {
             for(int i = 0; i < utilizadores.size(); i++) {
@@ -182,12 +183,11 @@ public class LoginActivity extends AppCompatActivity {
         //adicionada ao array
         Utilizador admin = new Utilizador("admin1", "admin1", 0);
         utilizadores.add(admin);
-        t.putListObject("array", utilizadores);
+        database.putListObject("array", utilizadores);
     }
 
     private Boolean verificaLogin(String username, String password){
-        TinyDB t = new TinyDB(getApplicationContext());
-        ArrayList<Object> utilizadores = t.getListObject("array", Utilizador.class);
+        ArrayList<Object> utilizadores = database.getListObject("array", Utilizador.class);
 
         if(utilizadores.size() > 0) {
             for(int i = 0; i < utilizadores.size(); i++) {
@@ -206,6 +206,18 @@ public class LoginActivity extends AppCompatActivity {
         usernameView.setError(getString(R.string.error_invalid_email));
         usernameView.requestFocus();
         return false;
+    }
+
+    private Utilizador getUtilizador(String username) {
+        ArrayList<Object> utilizadores = database.getListObject("array", Utilizador.class);
+
+        for(int i = 0; i < utilizadores.size(); i++) {
+            Utilizador u = (Utilizador) utilizadores.get(i);
+            if (u.getUsername().equals(username)) {
+                return u;
+            }
+        }
+        return null;
     }
 
 }

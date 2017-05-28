@@ -8,16 +8,14 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 public class AdapterImagens extends BaseAdapter {
+
     private Context context;
 
-    public Integer[] imagens = {
-            R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo,
-    };
+    public Integer[] imagens = {R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo,};
 
     public AdapterImagens(Context c) {
         context = c;
     }
-
 
     @Override
     public int getCount() {

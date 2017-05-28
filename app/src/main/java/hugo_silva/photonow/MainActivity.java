@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Utilizador currentUser;
+
     public static NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +26,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -46,8 +46,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setTitle("Página Principal");
 
         navigationView.getMenu().getItem(0).setChecked(true);
+
+        //Teste do Intent
+        if(getIntent().hasExtra("current_user")) {
+            currentUser = (Utilizador) getIntent().getSerializableExtra("current_user");
+        }
     }
 
+    public Utilizador getCurrentUser() {
+        return currentUser;
+    }
 
     @Override
     public void onBackPressed() {
@@ -92,4 +100,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

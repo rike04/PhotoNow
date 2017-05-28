@@ -47,6 +47,24 @@
         android:orientation="vertical"
         android:background="@drawable/border">
 
+        <GridView
+            android:background="@drawable/border"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:id="@+id/galeria_albuns"
+            android:columnWidth="100dp"
+            android:numColumns="auto_fit"
+            android:horizontalSpacing="1dp"
+            android:verticalSpacing="1dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
     </LinearLayout>
 
 </LinearLayout>
