@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hugo_silva.photonow">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,6 +28,7 @@
         <activity android:name=".AdapterSwipe" />
         <activity android:name=".Editar_Foto" />
         <activity android:name=".Ecomenda"></activity>
+
     </application>
 
 </manifest>
