@@ -17,6 +17,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class LoginActivity extends AppCompatActivity {
 
     private View viewProgresso;
@@ -28,6 +30,25 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        /*
+        //Testes
+        Utilizador u1 = new Utilizador("Teste1", "teste1", 1);
+        Utilizador u2 = new Utilizador("Teste2", "teste2", 2);
+        Utilizador u3 = new Utilizador("Teste3", "teste3", 3);
+
+        ArrayList<Object> users = new ArrayList<>();
+        users.add(u1);
+        users.add(u2);
+        users.add(u3);
+
+        Repositorio r = new Repositorio();
+        r.addUtilizador(u1);
+        r.addUtilizador(u2);
+        r.addUtilizador(u3);
+
+        TinyDB t = new TinyDB(getApplicationContext());
+        t.putListObject("array", users); */
 
         //Instanciação
         usernameView = (AutoCompleteTextView) findViewById(R.id.username);
@@ -87,6 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(true);
 
             if(true) {
+
                 //Iniciar a atividade main
                 Intent intent = new Intent(this, MainActivity.class);
                 TinyDB t = new TinyDB(getApplicationContext());
@@ -94,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 intent.putExtra("username", username);
                 startActivity(intent);
                 finish();
+
             } else {
                 usernameView.setError("Username não existe.");
             }
@@ -146,7 +169,6 @@ public class LoginActivity extends AppCompatActivity {
             // e prosseguirá normalmente
             viewProgresso.setVisibility(show ? View.VISIBLE : View.GONE);
             viewLoginForm.setVisibility(show ? View.GONE : View.VISIBLE);
-            Log.d(getClass().getSimpleName(), "OO");
         }
     }
 }

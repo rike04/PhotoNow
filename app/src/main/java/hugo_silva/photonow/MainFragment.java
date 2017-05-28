@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,10 +29,11 @@ public class MainFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
 
         TinyDB t = new TinyDB(getActivity().getApplicationContext());
-        String x = t.getString("username");
-        Log.d(getClass().getSimpleName(), x);
+        ArrayList<Object> x = t.getListObject("array", Utilizador.class);
+        Utilizador u = (Utilizador) x.get(0);
+        Log.d(getClass().getSimpleName(), u.getUsername());
         TextView vi = (TextView) v.findViewById(R.id.mainview);
-        vi.setText(x);
+        vi.setText(u.getUsername());
 
         // Inflate the layout for this fragment
         return v;

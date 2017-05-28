@@ -37,4 +37,13 @@ public class Repositorio implements Serializable {
         return false;
     }
 
+    public void addUtilizador(Utilizador u) {
+        if(u != null) {
+            return;
+        } else {
+
+            utilizadores.add(u);
+        }
+    }
+
 }

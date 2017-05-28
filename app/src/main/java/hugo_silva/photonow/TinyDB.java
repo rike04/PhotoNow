@@ -309,7 +309,6 @@ public class TinyDB {
     }
 
 
-
     public <T> T getObject(String key, Class<T> classOfT){
 
         String json = getString(key);

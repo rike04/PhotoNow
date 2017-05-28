@@ -20,7 +20,6 @@ public class Utilizador implements Serializable {
         this.username = username;
         this.password = password;
         albuns = new ArrayList<>();
-
     }
 
     public Utilizador() {
@@ -59,4 +58,14 @@ public class Utilizador implements Serializable {
 
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Utilizador{" +
+                "password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
 }
