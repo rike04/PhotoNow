@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -24,7 +23,6 @@ public class CriarAlbum extends Fragment {
 
     private static final int SELECT_PHOTO = 100;
     private Button botaoAdicionar;
-    private Bitmap capa = null;
     private Bundle savedState = null;
     private EditText viewTitulo;
     private ImageView viewCapa;
@@ -62,9 +60,8 @@ public class CriarAlbum extends Fragment {
             savedState = savedInstanceState.getBundle("Album");
         }
         if(savedState != null) {
-            capa = Util.arrayToBitmap(savedState.getByteArray("imagem"));
             ImageView image = (ImageView) v.findViewById(R.id.img_capa_album);
-            image.setImageBitmap(capa);
+            image.setImageBitmap(Util.arrayToBitmap(savedState.getByteArray("imagem")));
             image.setVisibility(View.VISIBLE);
 
             EditText texto = (EditText) v.findViewById(R.id.titulo_album);
@@ -97,7 +94,6 @@ public class CriarAlbum extends Fragment {
                     }
                     Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
                     viewCapa.setImageBitmap(yourSelectedImage);
-                    capa = yourSelectedImage;
                     viewCapa.setVisibility(View.VISIBLE);
                     botaoAdicionar.setVisibility(View.GONE);
                 }
@@ -105,15 +101,18 @@ public class CriarAlbum extends Fragment {
     }
 
     private void proximoPasso(final int containerID) {
-        if(capa != null) {
+        if(viewCapa.getVisibility() == View.VISIBLE) {
             if(verificaTitulo(viewTitulo.getText().toString())) {
                 CriarAlbum2 c = new CriarAlbum2();
-                c.receiveData(capa, viewTitulo.getText().toString());
+                c.receiveData((Bitmap) ((BitmapDrawable)viewCapa.getDrawable()).getBitmap(),
+                        viewTitulo.getText().toString());
                 FragmentManager fm = getFragmentManager();
                 fm.beginTransaction()
                         .replace(containerID, c)
                         .addToBackStack(null)
                         .commit();
+            } else {
+                viewTitulo.setError("Titulo de álbum inválido.");
             }
         }
     }
@@ -153,4 +152,5 @@ public class CriarAlbum extends Fragment {
         /* => (?:) operator inevitable! */
         outState.putBundle("album", (savedState != null) ? savedState : saveState());
     }
+
 }
