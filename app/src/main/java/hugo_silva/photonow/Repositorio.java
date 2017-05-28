@@ -13,7 +13,6 @@ public class Repositorio implements Serializable {
     private List<Utilizador> utilizadores;
 
     public Repositorio() {
-
         utilizadores = new ArrayList<>();
     }
 
@@ -23,6 +22,19 @@ public class Repositorio implements Serializable {
 
     public void setUtilizadores(List<Utilizador> u) {
         this.utilizadores = u;
+    }
+
+    public Boolean checkUtilizador(String username, String password) {
+        if(utilizadores.size() > 0) {
+            for(Utilizador u: utilizadores) {
+                if(u.getUsername().equals(username)) {
+                    if(u.getPassword().equals(password)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }

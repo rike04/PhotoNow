@@ -3,6 +3,7 @@ package hugo_silva.photonow;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.getMenu().getItem(0).setChecked(true);
 
+        TinyDB t = new TinyDB(getApplicationContext());
+        String x = t.getString("username");
+        Log.d(getClass().getSimpleName(), x);
     }
 
 

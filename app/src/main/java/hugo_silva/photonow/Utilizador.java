@@ -1,5 +1,6 @@
 package hugo_silva.photonow;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by rike4 on 27/05/2017.
  */
 
-public class Utilizador {
+public class Utilizador implements Serializable {
 
     private final int id;
     private String username;

@@ -1,6 +1,8 @@
 package hugo_silva.photonow;
 
 import android.media.Image;
+
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -8,7 +10,7 @@ import java.util.Date;
  * Created by rike4 on 27/05/2017.
  */
 
-public class Fotografia {
+public class Fotografia implements Serializable{
 
     private int id;
     private String descricao;

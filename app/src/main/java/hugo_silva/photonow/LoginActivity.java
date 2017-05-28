@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -84,20 +85,27 @@ public class LoginActivity extends AppCompatActivity {
             // perform the user login attempt.
             showProgress(true);
 
+            if(true) {
+                //Iniciar a atividade main
+                Intent intent = new Intent(this, MainActivity.class);
+                TinyDB t = new TinyDB(getApplicationContext());
+                t.putString("username", username);
+                intent.putExtra("username", username);
+                startActivity(intent);
+                finish();
+            } else {
+                usernameView.setError("Username não existe.");
+            }
+
             //Confirmar que a aplicação já foi aberta e o login feito
             /*SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
             SharedPreferences.Editor edt = pref.edit();
             edt.putBoolean("activity_executed", true);
             edt.putString("username", username); */
-
-            //Iniciar a atividade main
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
-            finish();
         }
 
     }
+
 
     private Boolean isPassValida(String password) {
         return password.length() >= 5;
