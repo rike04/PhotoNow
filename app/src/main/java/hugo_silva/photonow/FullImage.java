@@ -16,7 +16,7 @@ public class FullImage extends AppCompatActivity {
         setContentView(R.layout.activity_full_image);
 
         AdapterImagens adapterImagens = new AdapterImagens(this);
-        List<ImageView> images = new ArrayList<ImageView>();
+        List<ImageView> images = new ArrayList<>();
 
         for (int i = 0; i < adapterImagens.getCount(); i++) {
             ImageView imageView = new ImageView(this);

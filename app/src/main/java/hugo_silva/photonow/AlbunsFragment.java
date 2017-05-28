@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 
 
 /**
@@ -16,8 +17,8 @@ import android.widget.GridView;
 public class AlbunsFragment extends Fragment {
 
     Utilizador current_user;
-
     GridView gridView;
+    TextView textoGrid;
 
     public AlbunsFragment() {
         // Required empty public constructor
@@ -35,7 +36,15 @@ public class AlbunsFragment extends Fragment {
 
         gridView = (GridView) v.findViewById(R.id.galeria_albuns);
 
+        textoGrid = (TextView) v.findViewById(R.id.text_albuns);
+
         return v;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstances) {
+        super.onViewCreated(view, savedInstances);
+        getAlbunsPrivados();
     }
 
     //Atribui os onClickListeners aos botoes do layout
@@ -69,10 +78,19 @@ public class AlbunsFragment extends Fragment {
 
     //Mostra todos os albuns do utilizador com privacidade privada
     private void getAlbunsPrivados() {
-        if (current_user.countAlbunsPrivados() > 0) {
+        //Reiniciar as visibilidades da grid view e da text view
+        if (current_user.countAlbunsPrivados() == 0) {
+            //Esconde a mensagem de erro
+            textoGrid.setVisibility(View.GONE);
+
+            //Mostra a grid view
+            gridView.setVisibility(View.VISIBLE);
             gridView.setAdapter(new AdapterImagens(getView().getContext()));
         } else {
-
+            gridView.setVisibility(View.GONE);
+            // É mostrada a mensagem sobre a inexistência de álbuns do utilizador
+            textoGrid.setText("Não existem álbuns privados.");
+            textoGrid.setVisibility(View.VISIBLE);
         }
     }
 
