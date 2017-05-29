@@ -112,4 +112,13 @@ public class Utilizador implements Serializable {
         return albunsPrivados;
     }
 
+    public Boolean tituloJaExiste(String titulo) {
+        for (Album a: albuns) {
+             if(a.getTitulo().equals(titulo)) {
+                 return false;
+             }
+        }
+        return true;
+    }
+
 }

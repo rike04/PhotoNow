@@ -54,7 +54,7 @@ public class CriarAlbum extends Fragment {
         botaoProximoPasso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                proximoPasso(container.getId());
+                proximoPasso();
             }
         });
 
@@ -74,10 +74,10 @@ public class CriarAlbum extends Fragment {
     }
 
     private void adicionarAlbum() {
-        // Create intent to Open Image applications like Gallery, Google Photos
+        // Cria Intent para escolher fotografias da galeria
         Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
-        // Start the Intent
+        // Inicia o Intent
         startActivityForResult(galleryIntent, SELECT_PHOTO);
     }
 
@@ -102,19 +102,27 @@ public class CriarAlbum extends Fragment {
         }
     }
 
-    private void proximoPasso(final int containerID) {
+    //Verifica se os dados que devem ser preenchidos foram inseridos correctamente
+    private void proximoPasso() {
+        //Se a a ImageView da capa do álbum não estiver visivel significa que não foi inserida
+        //qualquer fotografia
         if(viewCapa.getVisibility() == View.VISIBLE) {
-            if(verificaTitulo(viewTitulo.getText().toString())) {
-                CriarAlbum2 c = new CriarAlbum2();
+            String titulo = viewTitulo.getText().toString();
+            if(titulo != null && titulo.length() > 3) {
+                if(verificaTitulo(titulo)) {
+                    CriarAlbum2 c = new CriarAlbum2();
 
-                //Preparar os dados para enviar para o fragment c
-                Bundle data = new Bundle();
-                data.putByteArray("capa",
-                        Util.bitmapToArray(((BitmapDrawable) viewCapa.getDrawable()).getBitmap()));
-                data.putString("titulo", viewTitulo.getText().toString());
-                //Envio do Bundle dos dados
-                c.setArguments(data);
-                Util.changeFragments(this, containerID, c);
+                    //Preparar os dados para enviar para o fragment c
+                    Bundle data = new Bundle();
+                    data.putByteArray("capa",
+                            Util.bitmapToArray(((BitmapDrawable) viewCapa.getDrawable()).getBitmap()));
+                    data.putString("titulo", titulo);
+                    //Envio do Bundle
+                    c.setArguments(data);
+                    Util.changeFragments(this, R.id.main_container, c);
+                } else {
+                    viewTitulo.setError("Já existe um álbum com este título.");
+                }
             } else {
                 viewTitulo.setError("Titulo de álbum inválido.");
             }
@@ -122,26 +130,26 @@ public class CriarAlbum extends Fragment {
     }
 
     private Boolean verificaTitulo(String titulo) {
-        if(titulo != null && titulo.length() > 3) {
-            return true;
-        } else {
-            return false;
-        }
+        Utilizador current_user = ((MainActivity)getActivity()).getCurrentUser();
+        return current_user.tituloJaExiste(titulo);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        savedState = saveState(); /* vstup defined here for sure */
+        //Guarda o estado do fragment
+        savedState = saveState();
+        //Reinicia as views
         viewTitulo = null;
         viewCapa = null;
     }
 
-    private Bundle saveState() { /* called either from onDestroyView() or onSaveInstanceState() */
+    private Bundle saveState() {
         Bundle state = new Bundle();
         state.putString("titulo", viewTitulo.getText().toString());
         if(viewCapa.getVisibility() == View.VISIBLE) {
-            state.putByteArray("imagem", Util.bitmapToArray((Bitmap) ((BitmapDrawable)viewCapa.getDrawable()).getBitmap()));
+            state.putByteArray("imagem",
+                    Util.bitmapToArray(((BitmapDrawable)viewCapa.getDrawable()).getBitmap()));
         } else {
             state.putByteArray("imagem", null);
         }

@@ -4,6 +4,7 @@ package hugo_silva.photonow;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,21 +35,21 @@ public class CriarAlbum2 extends Fragment {
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                criarNovoAlbum(container.getId());
+                criarNovoAlbum();
             }
         });
-
 
         return v;
     }
 
-    private void criarNovoAlbum(int idContainer) {
+    private void criarNovoAlbum() {
         if(titulo != null && titulo.length() > 4) {
            if(capa != null) {
                Album novoAlbum = new Album(titulo, capa);
                Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
                current_user.addAlbum(novoAlbum);
-               Util.changeFragments(this, idContainer, new AlbunsFragment());
+               getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+               Util.changeFragments(this, R.id.main_container, new AlbunsFragment());
            }
 
 

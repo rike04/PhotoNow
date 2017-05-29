@@ -30,13 +30,14 @@ public class AlbunsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_albuns, container, false);
-        setOnClickBotoes(v, container.getId(), this);
 
         current_user = ((MainActivity)getActivity()).getCurrentUser();
 
         gridView = (GridView) v.findViewById(R.id.galeria_albuns);
 
         textoGrid = (TextView) v.findViewById(R.id.text_albuns);
+
+        setOnClickBotoes(v, this);
 
         return v;
     }
@@ -48,7 +49,7 @@ public class AlbunsFragment extends Fragment {
     }
 
     //Atribui os onClickListeners aos botoes do layout
-    private void setOnClickBotoes(View v, final int containerID, final Fragment current) {
+    private void setOnClickBotoes(View v, final Fragment current) {
         final Button viewBotaoP = (Button) v.findViewById(R.id.botao_privado);
         viewBotaoP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +70,7 @@ public class AlbunsFragment extends Fragment {
         viewBotaoNovo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Util.changeFragments(current, containerID, new CriarAlbum());
+                Util.changeFragments(current, R.id.main_container, new CriarAlbum());
             }
         });
     }

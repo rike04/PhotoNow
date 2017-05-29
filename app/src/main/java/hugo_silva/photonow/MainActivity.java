@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
 
-                .replace(R.id.relative_layout_para_o_fragment, mainFragment, mainFragment.getTag()).commit();
+                .replace(R.id.main_container, mainFragment, mainFragment.getTag()).commit();
 
         getSupportActionBar().setTitle("Página Principal");
 
@@ -73,19 +73,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MainFragment mainFragment = new MainFragment();
             android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
-                    .replace(R.id.relative_layout_para_o_fragment, mainFragment, mainFragment.getTag()).commit();
+                    .replace(R.id.main_container, mainFragment, mainFragment.getTag()).commit();
 
         } else if (id == R.id.nav_albuns) {
             AlbunsFragment albunsFragment = new AlbunsFragment();
             android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
-                    .replace(R.id.relative_layout_para_o_fragment, albunsFragment, albunsFragment.getTag()).commit();
+                    .replace(R.id.main_container, albunsFragment, albunsFragment.getTag()).commit();
 
         } else if (id == R.id.nav_galeria) {
             GaleriaFragment galeriaFragment = new GaleriaFragment();
             android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
-                    .replace(R.id.relative_layout_para_o_fragment, galeriaFragment, galeriaFragment.getTag()).commit();
+                    .replace(R.id.main_container, galeriaFragment, galeriaFragment.getTag()).commit();
 
         } else if (id == R.id.nav_sair) {
             finish();
