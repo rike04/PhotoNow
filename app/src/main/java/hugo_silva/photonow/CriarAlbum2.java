@@ -2,13 +2,10 @@ package hugo_silva.photonow;
 
 import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-
 import java.util.List;
 
 public class CriarAlbum2 extends Fragment {
@@ -30,6 +27,7 @@ public class CriarAlbum2 extends Fragment {
         capa = image;
         this.titulo = titulo;
     }
+
 
 
 }
