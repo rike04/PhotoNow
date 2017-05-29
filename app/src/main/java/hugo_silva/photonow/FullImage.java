@@ -20,7 +20,7 @@ public class FullImage extends AppCompatActivity {
 
         for (int i = 0; i < adapterImagens.getCount(); i++) {
             ImageView imageView = new ImageView(this);
-            imageView.setImageResource(adapterImagens.imagens[i]);
+            imageView.setImageBitmap(adapterImagens.imagens[i]);
             imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             images.add(imageView);
         }

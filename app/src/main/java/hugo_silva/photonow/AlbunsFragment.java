@@ -1,10 +1,9 @@
 package hugo_silva.photonow;
 
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ public class AlbunsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_albuns, container, false);
-        setOnClickBotoes(v, container.getId());
+        setOnClickBotoes(v, container.getId(), this);
 
         current_user = ((MainActivity)getActivity()).getCurrentUser();
 
@@ -49,7 +48,7 @@ public class AlbunsFragment extends Fragment {
     }
 
     //Atribui os onClickListeners aos botoes do layout
-    private void setOnClickBotoes(View v, final int containerID) {
+    private void setOnClickBotoes(View v, final int containerID, final Fragment current) {
         final Button viewBotaoP = (Button) v.findViewById(R.id.botao_privado);
         viewBotaoP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +69,7 @@ public class AlbunsFragment extends Fragment {
         viewBotaoNovo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                novoAlbum(containerID);
+                Util.changeFragments(current, containerID, new CriarAlbum());
             }
         });
     }
@@ -108,15 +107,6 @@ public class AlbunsFragment extends Fragment {
             textoGrid.setText("Não existem álbuns públicos.");
             textoGrid.setVisibility(View.VISIBLE);
         }
-    }
-
-    private void novoAlbum(int containerID) {
-        CriarAlbum c = new CriarAlbum();
-        FragmentManager fm = getFragmentManager();
-        fm.beginTransaction()
-                .replace(containerID, c)
-                .addToBackStack(null)
-                .commit();
     }
 
 }

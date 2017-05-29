@@ -1,12 +1,14 @@
 package hugo_silva.photonow;
 
+
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,13 +106,15 @@ public class CriarAlbum extends Fragment {
         if(viewCapa.getVisibility() == View.VISIBLE) {
             if(verificaTitulo(viewTitulo.getText().toString())) {
                 CriarAlbum2 c = new CriarAlbum2();
-                c.receiveData((Bitmap) ((BitmapDrawable)viewCapa.getDrawable()).getBitmap(),
-                        viewTitulo.getText().toString());
-                FragmentManager fm = getFragmentManager();
-                fm.beginTransaction()
-                        .replace(containerID, c)
-                        .addToBackStack(null)
-                        .commit();
+
+                //Preparar os dados para enviar para o fragment c
+                Bundle data = new Bundle();
+                data.putByteArray("capa",
+                        Util.bitmapToArray(((BitmapDrawable) viewCapa.getDrawable()).getBitmap()));
+                data.putString("titulo", viewTitulo.getText().toString());
+                //Envio do Bundle dos dados
+                c.setArguments(data);
+                Util.changeFragments(this, containerID, c);
             } else {
                 viewTitulo.setError("Titulo de álbum inválido.");
             }

@@ -1,7 +1,10 @@
 package hugo_silva.photonow;
 
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
 import java.io.ByteArrayOutputStream;
 
@@ -23,6 +26,14 @@ public class Util {
     public static Bitmap arrayToBitmap(byte[] array) {
         Bitmap bmp = BitmapFactory.decodeByteArray(array, 0, array.length);
         return bmp;
-
     }
+
+    public static void changeFragments(Fragment current_fragment, int idContainer, Fragment novo ) {
+        FragmentManager fm = current_fragment.getFragmentManager();
+        fm.beginTransaction()
+                .replace(idContainer, novo)
+                .addToBackStack(null)
+                .commit();
+    }
+
 }
