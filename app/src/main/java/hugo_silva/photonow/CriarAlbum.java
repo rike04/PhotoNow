@@ -2,14 +2,15 @@ package hugo_silva.photonow;
 
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +88,7 @@ public class CriarAlbum extends Fragment {
         switch (requestCode) {
             case SELECT_PHOTO:
                 if (resultCode == RESULT_OK) {
+                    //new BitmapPreparer().execute(data);
                     Uri selectedImage = data.getData();
                     InputStream imageStream = null;
                     try {
@@ -111,14 +113,15 @@ public class CriarAlbum extends Fragment {
             if(titulo != null && titulo.length() > 3) {
                 if(verificaTitulo(titulo)) {
                     CriarAlbum2 c = new CriarAlbum2();
-
                     //Preparar os dados para enviar para o fragment c
-                    Bundle data = new Bundle();
+                    /*Bundle data = new Bundle();
                     data.putByteArray("capa",
                             Util.bitmapToArray(((BitmapDrawable) viewCapa.getDrawable()).getBitmap()));
                     data.putString("titulo", titulo);
                     //Envio do Bundle
-                    c.setArguments(data);
+                    c.setArguments(data); */
+                    c.setTitulo(viewTitulo.getText().toString());
+                    c.setCapa((BitmapDrawable) viewCapa.getDrawable());
                     Util.changeFragments(this, R.id.main_container, c);
                 } else {
                     viewTitulo.setError("Já existe um álbum com este título.");
@@ -164,5 +167,36 @@ public class CriarAlbum extends Fragment {
         /* => (?:) operator inevitable! */
         outState.putBundle("album", (savedState != null) ? savedState : saveState());
     }
+
+
+//    private class BitmapPreparer extends AsyncTask<Intent,Void, Void> {
+//
+//        ProgressDialog pdLoading = ProgressDialog.show(getActivity(), "A carregar...",
+//                "Por favor, aguarde...", true);
+//        Bitmap yourSelectedImage;
+//
+//        @Override
+//        protected Void doInBackground(Intent... params) {
+//            Intent i = params[0];
+//            Uri selectedImage = i.getData();
+//            InputStream imageStream = null;
+//            try {
+//                imageStream = getActivity().getContentResolver().openInputStream(selectedImage);
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
+//            yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            viewCapa.setImageBitmap(yourSelectedImage);
+//            viewCapa.setVisibility(View.VISIBLE);
+//            botaoAdicionar.setVisibility(View.GONE);
+//            pdLoading.dismiss();
+//        }
+//
+//    }
 
 }

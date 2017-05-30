@@ -28,7 +28,7 @@ public class Util {
         return bmp;
     }
 
-    public static void changeFragments(Fragment current_fragment, int id, Fragment novo ) {
+    public static void changeFragments(Fragment current_fragment, int id, Fragment novo) {
         FragmentManager fm = current_fragment.getFragmentManager();
         fm.beginTransaction()
                 .replace(id, novo)

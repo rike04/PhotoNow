@@ -64,7 +64,7 @@
             android:id="@+id/galeria_albuns"
             android:columnWidth="100dp"
             android:numColumns="auto_fit"
-            android:horizontalSpacing="1dp"
+            android:horizontalSpacing="20dp"
             android:verticalSpacing="1dp"
             android:stretchMode="columnWidth"
             android:gravity="center"

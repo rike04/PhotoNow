@@ -32,9 +32,7 @@ public class AlbunsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_albuns, container, false);
 
         current_user = ((MainActivity)getActivity()).getCurrentUser();
-
         gridView = (GridView) v.findViewById(R.id.galeria_albuns);
-
         textoGrid = (TextView) v.findViewById(R.id.text_albuns);
 
         setOnClickBotoes(v, this);

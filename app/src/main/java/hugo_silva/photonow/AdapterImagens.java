@@ -57,4 +57,6 @@ public class AdapterImagens extends BaseAdapter {
         return imageView;
     }
 
+
+
 }
