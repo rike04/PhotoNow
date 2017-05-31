@@ -1,7 +1,5 @@
 package hugo_silva.photonow;
 
-
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -121,9 +118,7 @@ public class CriarAlbum extends Fragment {
                     e.printStackTrace();
                 }
                 Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                if (yourSelectedImage.getWidth() <= 400 && yourSelectedImage.getHeight() <= 400) {
-                    RelativeLayout l = (RelativeLayout) getView().findViewById(R.id.layout_imagem);
-                }
+                yourSelectedImage = Bitmap.createScaledBitmap(yourSelectedImage, 320, 240, true);
                 viewCapa.setImageBitmap(yourSelectedImage);
                 viewCapa.setVisibility(View.VISIBLE);
                 botaoAdicionar.setVisibility(View.GONE);

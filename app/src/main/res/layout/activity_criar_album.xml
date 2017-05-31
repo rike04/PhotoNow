@@ -32,8 +32,8 @@
 
         <RelativeLayout
             android:id="@+id/layout_imagem"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="320dp"
+            android:layout_height="240dp"
             android:background="@drawable/border"
             android:layout_gravity="center">
 
@@ -57,8 +57,8 @@
 
             <ImageView
                 android:id="@+id/img_capa_album"
-                android:layout_width="200dp"
-                android:layout_height="200dp" />
+                android:layout_width="320dp"
+                android:layout_height="240dp" />
 
         </RelativeLayout>
 
