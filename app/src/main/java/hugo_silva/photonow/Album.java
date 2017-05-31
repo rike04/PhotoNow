@@ -55,4 +55,13 @@ public class Album implements Serializable{
         return capa;
     }
 
+    public void addFotografia(Bitmap imagem) {
+        Fotografia foto;
+        if(fotografias.isEmpty()) {
+
+        } else {
+
+        }
+    }
+
 }

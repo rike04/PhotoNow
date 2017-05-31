@@ -14,20 +14,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
         android:text="Selecione as fotografias que deseja"/>
-
-    <Button
-        android:layout_gravity="right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="30dp"
-        android:minHeight="30dp"
-        android:background="@drawable/ic_confirmar"
-        android:id="@+id/btn_finalizar_album" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="350dp"
         android:orientation="vertical"
         android:background="@drawable/border">
 
@@ -52,5 +44,37 @@
             android:minWidth="200px" />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="5dp">
+
+        <Button
+            android:id="@+id/botao_back2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:minHeight="35dp"
+            android:minWidth="35dp"
+            android:background="@drawable/ic_undo"/>
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:text="Finalizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_finalizar_album"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="Passo 2/2"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

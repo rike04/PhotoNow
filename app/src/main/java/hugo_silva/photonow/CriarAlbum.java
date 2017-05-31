@@ -118,7 +118,7 @@ public class CriarAlbum extends Fragment {
                     e.printStackTrace();
                 }
                 Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                yourSelectedImage = Bitmap.createScaledBitmap(yourSelectedImage, 320, 240, true);
+                yourSelectedImage = Util.bitmapResizer(yourSelectedImage, 320, 240);
                 viewCapa.setImageBitmap(yourSelectedImage);
                 viewCapa.setVisibility(View.VISIBLE);
                 botaoAdicionar.setVisibility(View.GONE);

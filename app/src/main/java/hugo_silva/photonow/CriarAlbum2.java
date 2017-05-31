@@ -1,7 +1,6 @@
 package hugo_silva.photonow;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +20,6 @@ import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,11 +54,15 @@ public class CriarAlbum2 extends Fragment {
             }
         });
 
-        //grid = (GridView) v.findViewById(R.id.gridview_add_fotos);
-
+        Button btnVoltarAtras = (Button) v.findViewById(R.id.botao_back2);
+        btnVoltarAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         //Testes
-
         final String[] columns = { MediaStore.Images.Media.DATA, MediaStore.Images.Media._ID };
         final String orderBy = MediaStore.Images.Media._ID;
         Cursor imagecursor = getContext().getContentResolver().query(
@@ -72,6 +73,7 @@ public class CriarAlbum2 extends Fragment {
         this.thumbnails = new Bitmap[this.count];
         this.arrPath = new String[this.count];
         this.thumbnailsselection = new boolean[this.count];
+
         for (int i = 0; i < this.count; i++) {
             imagecursor.moveToPosition(i);
             int id = imagecursor.getInt(image_column_index);
@@ -81,6 +83,7 @@ public class CriarAlbum2 extends Fragment {
                     MediaStore.Images.Thumbnails.MICRO_KIND, null);
             arrPath[i]= imagecursor.getString(dataColumnIndex);
         }
+
         GridView imagegrid = (GridView) v.findViewById(R.id.PhoneImageGrid);
         imageAdapter = new ImageAdapter();
         imagegrid.setAdapter(imageAdapter);
@@ -98,7 +101,7 @@ public class CriarAlbum2 extends Fragment {
                 {
                     if (thumbnailsselection[i]){
                         cnt++;
-                        selectImages = selectImages + arrPath[i] + "|";
+                        selectImages = selectImages + arrPath[i] + "|";;
                     }
                 }
                 if (cnt == 0){
@@ -139,8 +142,6 @@ public class CriarAlbum2 extends Fragment {
                Util.changeFragments(this, R.id.main_container, new AlbunsFragment());
         }
     }
-
-
 
     //Versão de testes
 

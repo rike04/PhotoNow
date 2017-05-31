@@ -3,7 +3,7 @@ package hugo_silva.photonow;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Ecomenda extends AppCompatActivity {
+public class Encomenda extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
