@@ -2,12 +2,10 @@ package hugo_silva.photonow;
 
 
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,6 +27,7 @@ public class CriarAlbum extends Fragment {
 
     private static final int SELECT_PHOTO = 100;
     private Button botaoAdicionar;
+    private Button botaoAlterar;
     private Bundle savedState = null;
     private AutoCompleteTextView viewTitulo;
     private EditText viewDescricao;
@@ -46,14 +45,26 @@ public class CriarAlbum extends Fragment {
         viewCapa = (ImageView) v.findViewById(R.id.img_capa_album);
         viewDescricao = (EditText) v.findViewById(R.id.descricao_album);
 
+        //Botões de manipulação da foto de capa
         botaoAdicionar = (Button) v.findViewById(R.id.botao_adicionar_album);
         botaoAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adicionarAlbum();
+                selecionarFoto();
+            }
+        });
+        botaoAlterar = (Button) v.findViewById(R.id.botao_alterar_album);
+        botaoAlterar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewCapa.setImageDrawable(null);
+                viewCapa.setImageBitmap(null);
+                selecionarFoto();
             }
         });
 
+
+        //Botões de retorno e avanço do processo de criação de um álbum
         Button botaoProximoPasso = (Button) v.findViewById(R.id.botao_prox_passo1);
         botaoProximoPasso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +72,21 @@ public class CriarAlbum extends Fragment {
                 proximoPasso();
             }
         });
+        Button botaoBack = (Button) v.findViewById(R.id.botao_back1);
+        botaoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
+        //Verifica se existe um estado guardado deste fragment com o Bundle de informações para as
+        //views
         if(savedInstanceState != null && savedState == null) {
             savedState = savedInstanceState.getBundle("Album");
         }
         if(savedState != null) {
+            //O estado guardado sobre este fragment existe logo as Views são igualadas ás variáveis
             ImageView image = (ImageView) v.findViewById(R.id.img_capa_album);
             image.setImageBitmap(Util.arrayToBitmap(savedState.getByteArray("imagem")));
             image.setVisibility(View.VISIBLE);
@@ -78,7 +99,7 @@ public class CriarAlbum extends Fragment {
         return v;
     }
 
-    private void adicionarAlbum() {
+    private void selecionarFoto() {
         // Cria Intent para escolher fotografias da galeria
         Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
         galleryIntent.setType("image/*");
@@ -89,25 +110,25 @@ public class CriarAlbum extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case SELECT_PHOTO:
-                if (resultCode == RESULT_OK) {
-                    //new BitmapPreparer().execute(data);
-                    Uri selectedImage = data.getData();
-                    InputStream imageStream = null;
-                    try {
-                        imageStream = getActivity().getContentResolver().openInputStream(selectedImage);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-                    if (yourSelectedImage.getWidth() <= 400 && yourSelectedImage.getHeight() <= 400) {
-                        RelativeLayout l = (RelativeLayout) getView().findViewById(R.id.layout_imagem);
-                    }
-                    viewCapa.setImageBitmap(yourSelectedImage);
-                    viewCapa.setVisibility(View.VISIBLE);
-                    botaoAdicionar.setVisibility(View.GONE);
+        if (requestCode == SELECT_PHOTO) {
+            if (resultCode == RESULT_OK) {
+                //new BitmapPreparer().execute(data);
+                Uri selectedImage = data.getData();
+                InputStream imageStream = null;
+                try {
+                    imageStream = getActivity().getContentResolver().openInputStream(selectedImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
                 }
+                Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                if (yourSelectedImage.getWidth() <= 400 && yourSelectedImage.getHeight() <= 400) {
+                    RelativeLayout l = (RelativeLayout) getView().findViewById(R.id.layout_imagem);
+                }
+                viewCapa.setImageBitmap(yourSelectedImage);
+                viewCapa.setVisibility(View.VISIBLE);
+                botaoAdicionar.setVisibility(View.GONE);
+                botaoAlterar.setVisibility(View.VISIBLE);
+            }
         }
     }
 
@@ -152,7 +173,9 @@ public class CriarAlbum extends Fragment {
         Bundle state = new Bundle();
         state.putString("titulo", viewTitulo.getText().toString());
         state.putString("descricao", viewDescricao.getText().toString());
-        if(viewCapa.getVisibility() == View.VISIBLE) {
+        if(viewCapa.getDrawable() != null &&
+                ((BitmapDrawable) viewCapa.getDrawable()).getBitmap() !=null) {
+
             state.putByteArray("imagem",
                     Util.bitmapToArray(((BitmapDrawable)viewCapa.getDrawable()).getBitmap()));
         } else {
@@ -169,7 +192,6 @@ public class CriarAlbum extends Fragment {
         /* => (?:) operator inevitable! */
         outState.putBundle("album", (savedState != null) ? savedState : saveState());
     }
-
 
 //    private class BitmapPreparer extends AsyncTask<Intent,Void, Void> {
 //
