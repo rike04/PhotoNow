@@ -14,9 +14,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -27,12 +30,11 @@ public class CriarAlbum extends Fragment {
     private static final int SELECT_PHOTO = 100;
     private Button botaoAdicionar;
     private Bundle savedState = null;
-    private EditText viewTitulo;
+    private AutoCompleteTextView viewTitulo;
+    private EditText viewDescricao;
     private ImageView viewCapa;
 
-    public CriarAlbum() {
-
-    }
+    public CriarAlbum() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater,final ViewGroup container,
@@ -40,8 +42,9 @@ public class CriarAlbum extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.activity_criar_album, container, false);
 
-        viewTitulo = (EditText) v.findViewById(R.id.titulo_album);
+        viewTitulo = (AutoCompleteTextView) v.findViewById(R.id.titulo_album);
         viewCapa = (ImageView) v.findViewById(R.id.img_capa_album);
+        viewDescricao = (EditText) v.findViewById(R.id.descricao_album);
 
         botaoAdicionar = (Button) v.findViewById(R.id.botao_adicionar_album);
         botaoAdicionar.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +70,11 @@ public class CriarAlbum extends Fragment {
             image.setImageBitmap(Util.arrayToBitmap(savedState.getByteArray("imagem")));
             image.setVisibility(View.VISIBLE);
 
-            EditText texto = (EditText) v.findViewById(R.id.titulo_album);
-            texto.setText(savedState.getString("titulo"));
+            viewTitulo.setText(savedState.getString("titulo"));
+            viewDescricao.setText(savedState.getString("descricao"));
         }
         savedState = null;
+
         return v;
     }
 
@@ -97,6 +101,9 @@ public class CriarAlbum extends Fragment {
                         e.printStackTrace();
                     }
                     Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+                    if (yourSelectedImage.getWidth() <= 400 && yourSelectedImage.getHeight() <= 400) {
+                        RelativeLayout l = (RelativeLayout) getView().findViewById(R.id.layout_imagem);
+                    }
                     viewCapa.setImageBitmap(yourSelectedImage);
                     viewCapa.setVisibility(View.VISIBLE);
                     botaoAdicionar.setVisibility(View.GONE);
@@ -113,13 +120,6 @@ public class CriarAlbum extends Fragment {
             if(titulo != null && titulo.length() > 3) {
                 if(verificaTitulo(titulo)) {
                     CriarAlbum2 c = new CriarAlbum2();
-                    //Preparar os dados para enviar para o fragment c
-                    /*Bundle data = new Bundle();
-                    data.putByteArray("capa",
-                            Util.bitmapToArray(((BitmapDrawable) viewCapa.getDrawable()).getBitmap()));
-                    data.putString("titulo", titulo);
-                    //Envio do Bundle
-                    c.setArguments(data); */
                     c.setTitulo(viewTitulo.getText().toString());
                     c.setCapa((BitmapDrawable) viewCapa.getDrawable());
                     Util.changeFragments(this, R.id.main_container, c);
@@ -145,11 +145,13 @@ public class CriarAlbum extends Fragment {
         //Reinicia as views
         viewTitulo = null;
         viewCapa = null;
+        viewDescricao = null;
     }
 
     private Bundle saveState() {
         Bundle state = new Bundle();
         state.putString("titulo", viewTitulo.getText().toString());
+        state.putString("descricao", viewDescricao.getText().toString());
         if(viewCapa.getVisibility() == View.VISIBLE) {
             state.putByteArray("imagem",
                     Util.bitmapToArray(((BitmapDrawable)viewCapa.getDrawable()).getBitmap()));

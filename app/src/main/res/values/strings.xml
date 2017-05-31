@@ -12,7 +12,7 @@
     <string name="iniciar_sessao">Iniciar Sessão</string>
     <string name="registo_conta">Ainda não tens uma conta? Regista-te.</string>
     <string name="esquece_passe">Esqueceste-te da palavra-passe?</string>
-    <string name="prompt_email">Nome de utilizador</string>
+    <string name="prompt_username">Nome de utilizador</string>
     <string name="prompt_password">Palavra-passe</string>
     <string name="action_sign_in">Iniciar Sessão</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -26,4 +26,5 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nome_album">Nome do Álbum</string>
 </resources>

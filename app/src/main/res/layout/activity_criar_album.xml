@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_criar_album"
     android:layout_width="match_parent"
@@ -11,25 +12,28 @@
     android:paddingTop="16dp"
     tools:context="hugo_silva.photonow.CriarAlbum">
 
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:paddingBottom="5dp">
 
+        <AutoCompleteTextView
+            android:id="@+id/titulo_album"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:hint="@string/nome_album"
+            android:maxLines="1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="30sp"
-            android:text="Novo Álbum"/>
-
-    </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
     <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:id="@+id/layout_imagem"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:minWidth="200dp"
+        android:minHeight="200dp"
         android:background="@drawable/border"
         android:layout_gravity="center">
 
@@ -42,40 +46,59 @@
             android:background="@drawable/ic_adicionar"
             android:layout_centerInParent="true"/>
 
+        <Button
+            android:id="@+id/botao_alterar_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="60dp"
+            android:minWidth="60dp"
+            android:background="@drawable/ic_editar"
+            android:visibility="gone"/>
+
         <ImageView
             android:id="@+id/img_capa_album"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:visibility="gone"/>
 
     </RelativeLayout>
 
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:orientation="vertical">
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Nome do Álbum"
-        android:textAlignment="center"
-        android:ems="10"
-        android:id="@+id/titulo_album" />
-
-    </LinearLayout>
-
-    <Button
-        android:layout_marginTop="20dp"
-        android:text="Próximo Passo"
+        android:hint="Descrição do álbum"
         android:layout_gravity="center"
+        android:ems="10"
+        android:id="@+id/descricao_album" />
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/botao_prox_passo1" />
+        android:layout_gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:minHeight="35dp"
+            android:minWidth="35dp"
+            android:background="@drawable/ic_undo"/>
+
+        <Button
+            android:layout_marginTop="20dp"
+            android:text="Próximo Passo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/botao_prox_passo1"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="Passo 1/2"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
