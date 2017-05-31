@@ -14,7 +14,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -90,6 +89,9 @@ public class CriarAlbum extends Fragment {
 
             viewTitulo.setText(savedState.getString("titulo"));
             viewDescricao.setText(savedState.getString("descricao"));
+
+            botaoAdicionar.setVisibility(View.GONE);
+            botaoAlterar.setVisibility(View.VISIBLE);
         }
         savedState = null;
 

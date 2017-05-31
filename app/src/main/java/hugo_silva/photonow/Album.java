@@ -1,13 +1,10 @@
 package hugo_silva.photonow;
 
 import android.graphics.Bitmap;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by rike4 on 27/05/2017.
@@ -17,7 +14,7 @@ public class Album implements Serializable{
 
     private int id;
     private Bitmap capa;
-    private Map<Integer, Fotografia> fotografias;
+    private ArrayList<Fotografia> fotografias;
     private String titulo;
     private Boolean privado;
     private String descricao;
@@ -27,7 +24,7 @@ public class Album implements Serializable{
     public Album(String titulo,Bitmap capa ) {
         this.id += 1;
         this.titulo = titulo;
-        fotografias = new HashMap<>();
+        fotografias = new ArrayList<>();
         privado = true;
         descricao = null;
         data = new Date();
@@ -58,10 +55,18 @@ public class Album implements Serializable{
     public void addFotografia(Bitmap imagem) {
         Fotografia foto;
         if(fotografias.isEmpty()) {
-
+            foto = new Fotografia(imagem, 1);
         } else {
-
+            foto = new Fotografia(imagem, fotografias.size() + 1);
         }
+    }
+
+    public ArrayList<Bitmap> getAllPhotos() {
+        ArrayList<Bitmap> lista = new ArrayList<>();
+        for(Fotografia f: fotografias) {
+            lista.add(f.getImagem());
+        }
+        return lista;
     }
 
 }

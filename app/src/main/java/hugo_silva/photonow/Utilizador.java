@@ -1,5 +1,7 @@
 package hugo_silva.photonow;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,6 +121,16 @@ public class Utilizador implements Serializable {
              }
         }
         return true;
+    }
+
+    public ArrayList<Bitmap> getAllPhotos() {
+        ArrayList<Bitmap> lista = new ArrayList<>();
+        for(Album a: albuns) {
+            for(Bitmap imagens: a.getAllPhotos()) {
+                lista.add(imagens);
+            }
+        }
+        return lista;
     }
 
 }

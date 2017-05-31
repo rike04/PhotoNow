@@ -16,6 +16,7 @@ import android.widget.GridView;
  */
 public class GaleriaFragment extends Fragment {
 
+    GridView grid;
 
     public GaleriaFragment() {
         // Required empty public constructor
@@ -28,9 +29,12 @@ public class GaleriaFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_galeria, container, false);
 
-        /*
+        Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
+
         GridView gridView = (GridView) view.findViewById(R.id.galeria);
-        gridView.setAdapter(new AdapterImagens(view.getContext()));
+        gridView.setAdapter(new AdapterImagens(view.getContext(), current_user.getAlbunsPrivados()));
+
+        /*
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

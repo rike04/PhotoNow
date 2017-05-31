@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterImagens extends BaseAdapter {
@@ -26,9 +27,21 @@ public class AdapterImagens extends BaseAdapter {
         setImagensIDS(lista);
     }
 
+    public AdapterImagens(Context c, ArrayList<Bitmap> lista) {
+        this.context = c;
+        imagens = new Bitmap[lista.size()];
+        setImagensIDSBitmap(lista);
+    }
+
     private void setImagensIDS(List<Album> l) {
         for(int i = 0; i < imagens.length; i++) {
             imagens[i] = l.get(i).getImagemCapa();
+        }
+    }
+
+    private void setImagensIDSBitmap(List<Bitmap> l) {
+        for(int i = 0; i < imagens.length; i++) {
+            imagens[i] = l.get(i);
         }
     }
 

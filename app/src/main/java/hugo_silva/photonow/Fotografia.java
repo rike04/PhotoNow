@@ -1,6 +1,7 @@
 package hugo_silva.photonow;
 
-import android.media.Image;
+import android.graphics.Bitmap;
+import android.os.Bundle;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,10 +17,17 @@ public class Fotografia implements Serializable{
     private String descricao;
     private Date dataUpload;
     private String localizacao;
-    private Image imagem;
-    private int idImagem;
+    private Bitmap imagem;
 
+    public Fotografia(Bitmap imagem, int id) {
+        this.imagem = imagem;
+        this.id = id;
+        dataUpload = new Date();
+        descricao = "";
+        localizacao = "";
+    }
 
-
-
+    public Bitmap getImagem() {
+        return imagem;
+    }
 }

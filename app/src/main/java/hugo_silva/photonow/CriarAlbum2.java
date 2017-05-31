@@ -29,7 +29,7 @@ public class CriarAlbum2 extends Fragment {
     private String titulo;
     private GridView grid;
     private List<Fotografia> arrayGrid;
-
+    private Album novoAlbum;
 
     //Testes
     private int count;
@@ -132,9 +132,16 @@ public class CriarAlbum2 extends Fragment {
         if(titulo != null && capa != null) {
 
                 //Cria o álbum e adiciona-o ao utilizador atual
-               //Album novoAlbum = new Album(titulo, capa);
-               Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
-               // current_user.addAlbum(novoAlbum);
+               Album novoAlbum = new Album(titulo, capa.getBitmap());
+              final int len = thumbnailsselection.length;
+              for (int i =0; i<len; i++)
+              {
+                if (thumbnailsselection[i]){
+                    novoAlbum.addFotografia(thumbnails[i]);
+                }
+              }
+              Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
+              current_user.addAlbum(novoAlbum);
 
                //Retira os dois ecrãs da criação do álbum da stack. Evita que ao pressionar o botão
                //para trás o utilizador tenha novamente acesso aos ecrãs de criação.
