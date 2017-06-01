@@ -23,7 +23,6 @@
         </activity>
         <activity android:name=".FullImage" />
         <activity android:name=".Editar_Foto" />
-        <activity android:name=".Encomenda"></activity>
 
     </application>
 

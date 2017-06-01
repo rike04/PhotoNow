@@ -84,7 +84,7 @@ public class AlbunsFragment extends Fragment {
             //Mostra a grid view
             listView.setVisibility(View.VISIBLE);
             listView.setAdapter(new CustomAdapter(getView().getContext(),
-                    (ArrayList<Album>) current_user.getAlbunsPrivados(), current_user));
+                    (ArrayList<Album>) current_user.getAlbunsPrivados(), current_user, this));
         } else {
             listView.setVisibility(View.GONE);
             // É mostrada a mensagem sobre a inexistência de álbuns do utilizador
@@ -102,7 +102,7 @@ public class AlbunsFragment extends Fragment {
             //Mostra a grid view
             listView.setVisibility(View.VISIBLE);
             listView.setAdapter(new CustomAdapter(getView().getContext(),
-                    (ArrayList<Album>) current_user.getAlbunsPublicos(), current_user));
+                    (ArrayList<Album>) current_user.getAlbunsPublicos(), current_user, this));
         } else {
             listView.setVisibility(View.GONE);
             // É mostrada a mensagem sobre a inexistência de álbuns do utilizador

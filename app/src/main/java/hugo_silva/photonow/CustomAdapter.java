@@ -1,7 +1,9 @@
 package hugo_silva.photonow;
 
 import android.content.Context;
-import android.media.Image;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -24,11 +24,13 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
     private ArrayList<Album> list = new ArrayList<>();
     private Context context;
     private final Utilizador current_user;
+    private final Fragment currentFragment;
 
-    public CustomAdapter(Context c, ArrayList<Album> list, Utilizador current_user) {
+    public CustomAdapter(Context c, ArrayList<Album> list, Utilizador current_user, Fragment currenFragment) {
         this.context = c;
         this.list = list;
         this.current_user = current_user;
+        this.currentFragment = currenFragment;
     }
 
     @Override
@@ -62,13 +64,25 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
 
         //Handle buttons and add onClickListeners
         Button deleteBtn = (Button)view.findViewById(R.id.delete_btn);
-
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 list.remove(position);
                 current_user.setAlbuns(list);
                 notifyDataSetChanged();
+            }
+        });
+
+        Button shopButton = (Button) view.findViewById(R.id.shopping_cart_album);
+        shopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EncomendaFragment e = new EncomendaFragment();
+                Bundle data = new Bundle();
+                data.putInt("AlbumKey", list.get(position).getId());
+                Log.d(getClass().getSimpleName(), Integer.toString(list.get(position).getId()));
+                e.setArguments(data);
+                Util.changeFragments(currentFragment, R.id.main_container, e);
             }
         });
 

@@ -57,7 +57,11 @@ public class Utilizador implements Serializable {
     }
 
     public Album getAlbumbyId(int id) {
-
+        for(Album a: albuns) {
+            if(id == a.getId()) {
+                return a;
+            }
+        }
         return null;
     }
 
