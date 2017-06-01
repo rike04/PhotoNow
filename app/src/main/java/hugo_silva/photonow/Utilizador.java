@@ -131,4 +131,8 @@ public class Utilizador implements Serializable {
         return lista;
     }
 
+    public void setListaAlbuns(ArrayList<Album> novaLista) {
+        this.albuns = novaLista;
+    }
+
 }

@@ -1,10 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="hugo_silva.photonow.AlbunsFragment">
-
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
 
         <Button
             android:text="Privados"
@@ -62,15 +58,11 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
             android:id="@+id/galeria_albuns"
-            android:columnWidth="100dp"
-            android:numColumns="auto_fit"
             android:horizontalSpacing="20dp"
-            android:verticalSpacing="1dp"
-            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </ListView>
 
        <!-- <GridView

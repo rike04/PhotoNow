@@ -23,10 +23,12 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
 
     private ArrayList<Album> list = new ArrayList<>();
     private Context context;
+    private final Utilizador current_user;
 
-    public CustomAdapter(Context c, ArrayList<Album> list) {
+    public CustomAdapter(Context c, ArrayList<Album> list, Utilizador current_user) {
         this.context = c;
         this.list = list;
+        this.current_user = current_user;
     }
 
     @Override
@@ -64,8 +66,8 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
         deleteBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
-                list.remove(position); //or some other task
+                list.remove(position);
+                current_user.setAlbuns(list);
                 notifyDataSetChanged();
             }
         });
