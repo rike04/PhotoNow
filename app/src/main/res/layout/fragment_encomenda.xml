@@ -23,19 +23,13 @@ android:paddingTop="@dimen/activity_vertical_margin">
         android:text="Álbum escolhido:"
         android:textSize="20sp"/>
 
-    <LinearLayout
+
+    <ImageView
         android:layout_width="250dp"
         android:layout_height="300dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/border"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:id="@+id/capa_album_encomendado"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/capa_album_encomendado"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,7 +68,6 @@ android:paddingTop="@dimen/activity_vertical_margin">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/encomenda_confirmar1" />
-
     </LinearLayout>
 
 </LinearLayout>

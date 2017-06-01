@@ -13,7 +13,6 @@ import java.util.List;
 public class AdapterImagens extends BaseAdapter {
 
     private Context context;
-   // public Integer[] imagens = {R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo,};
     public Bitmap[] imagens;
 
     public AdapterImagens(Context c) {
@@ -22,26 +21,25 @@ public class AdapterImagens extends BaseAdapter {
 
     public AdapterImagens(Context c, List<Album> lista) {
         this.context = c;
-        imagens = new Bitmap[lista.size()];
+        imagens = new Bitmap[totalAlbumSize(lista)];
         setImagensIDS(lista);
     }
 
-    public AdapterImagens(Context c, ArrayList<Bitmap> lista) {
-        this.context = c;
-        imagens = new Bitmap[lista.size()];
-        setImagensIDSBitmap(lista);
-    }
-
     private void setImagensIDS(List<Album> l) {
-        for(int i = 0; i < imagens.length; i++) {
-            imagens[i] = l.get(i).getImagemCapa();
+        int i = 0;
+        while(i < imagens.length) {
+            for (Album a: l) {
+
+            }
         }
     }
 
-    private void setImagensIDSBitmap(List<Bitmap> l) {
-        for(int i = 0; i < imagens.length; i++) {
-            imagens[i] = l.get(i);
+    private int totalAlbumSize(List<Album> l) {
+        int contador = 0;
+        for(Album a: l) {
+            contador+= a.getNumeroFotos();
         }
+        return contador;
     }
 
     @Override

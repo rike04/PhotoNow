@@ -1,5 +1,6 @@
 package hugo_silva.photonow;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class EncomendaFragment extends Fragment {
-
     private Album album;
 
     public EncomendaFragment() {}
@@ -51,7 +51,8 @@ public class EncomendaFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstances) {
         super.onViewCreated(view, savedInstances);
         ImageView viewCapa = (ImageView) view.findViewById(R.id.capa_album_encomendado);
-        viewCapa.setImageBitmap(album.getImagemCapa());
+        Bitmap x = Util.bitmapResizer(album.getImagemCapa(), 400, 400);
+        viewCapa.setImageBitmap(x);
 
     }
 

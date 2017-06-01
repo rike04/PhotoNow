@@ -29,11 +29,9 @@ public class GaleriaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_galeria, container, false);
-
         Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
-        lista = (GridView) view.findViewById(R.id.lista_imagens);
+        //lista = (GridView) view.findViewById(R.id.lista_imagens);
 
         //lista.setAdapter(new CustomAdapter(getContext(), current_user.getAllPhotos()));
 
@@ -50,7 +48,6 @@ public class GaleriaFragment extends Fragment {
             }
         });
         */
-
         return view;
 
     }
