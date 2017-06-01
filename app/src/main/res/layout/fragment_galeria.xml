@@ -1,5 +1,4 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
 
         <Button
             android:text="+ Nova Foto"
@@ -38,8 +36,16 @@
             android:layout_marginTop="15dp"/>
 
     </LinearLayout>
+    
+    <ListView
+        android:id="@+id/lista_imagens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="true">
 
-    <GridView
+    </ListView>
+
+   <!-- <GridView
         android:background="@drawable/border"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -55,6 +61,6 @@
         android:stretchMode="columnWidth"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/> -->
 
 </LinearLayout>

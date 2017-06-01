@@ -123,12 +123,10 @@ public class Utilizador implements Serializable {
         return true;
     }
 
-    public ArrayList<Bitmap> getAllPhotos() {
-        ArrayList<Bitmap> lista = new ArrayList<>();
+    public ArrayList<Fotografia> getAllPhotos() {
+        ArrayList<Fotografia> lista = new ArrayList<>();
         for(Album a: albuns) {
-            for(Bitmap imagens: a.getAllPhotos()) {
-                lista.add(imagens);
-            }
+            lista = a.getAllPhotos();
         }
         return lista;
     }

@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ListView;
+
+import java.util.List;
 
 
 /**
@@ -17,6 +20,7 @@ import android.widget.GridView;
 public class GaleriaFragment extends Fragment {
 
     GridView grid;
+    ListView lista;
 
     public GaleriaFragment() {
         // Required empty public constructor
@@ -30,11 +34,14 @@ public class GaleriaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_galeria, container, false);
 
         Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
+        lista = (ListView) view.findViewById(R.id.lista_imagens);
 
+        //lista.setAdapter(new CustomAdapter(getContext(), current_user.getAllPhotos()));
+
+        /*
         GridView gridView = (GridView) view.findViewById(R.id.galeria);
         gridView.setAdapter(new AdapterImagens(view.getContext(), current_user.getAlbunsPrivados()));
 
-        /*
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -18,7 +21,8 @@ import android.widget.TextView;
 public class AlbunsFragment extends Fragment {
 
     private Utilizador current_user;
-    private GridView gridView;
+    private ListView gridView;
+    //private GridView gridView;
     private TextView textoGrid;
 
     public AlbunsFragment() {
@@ -32,7 +36,7 @@ public class AlbunsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_albuns, container, false);
 
         current_user = ((MainActivity)getActivity()).getCurrentUser();
-        gridView = (GridView) v.findViewById(R.id.galeria_albuns);
+        gridView = (ListView) v.findViewById(R.id.galeria_albuns);
         textoGrid = (TextView) v.findViewById(R.id.text_albuns);
 
         setOnClickBotoes(v, this);
@@ -81,8 +85,7 @@ public class AlbunsFragment extends Fragment {
 
             //Mostra a grid view
             gridView.setVisibility(View.VISIBLE);
-            gridView.setAdapter(new AdapterImagens(getView().getContext(),
-                    current_user.getAlbunsPrivados()));
+            gridView.setAdapter(new CustomAdapter(getView().getContext(), (ArrayList<Album>) current_user.getAlbunsPrivados()));
         } else {
             gridView.setVisibility(View.GONE);
             // É mostrada a mensagem sobre a inexistência de álbuns do utilizador

@@ -13,15 +13,16 @@ import java.util.Date;
 
 public class Fotografia implements Serializable{
 
-    private int id;
+    private static int sequenciaID = 0;
+    private final int id;
     private String descricao;
     private Date dataUpload;
     private String localizacao;
     private Bitmap imagem;
 
-    public Fotografia(Bitmap imagem, int id) {
+    public Fotografia(Bitmap imagem) {
         this.imagem = imagem;
-        this.id = id;
+        this.id = sequenciaID + 1;
         dataUpload = new Date();
         descricao = "";
         localizacao = "";
@@ -30,4 +31,9 @@ public class Fotografia implements Serializable{
     public Bitmap getImagem() {
         return imagem;
     }
+
+    public int getId() {
+        return this.id;
+    }
+
 }

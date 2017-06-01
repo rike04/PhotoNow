@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Album implements Serializable{
 
+    private static int sequenciaIDAlbum = 0;
     private int id;
     private Bitmap capa;
     private ArrayList<Fotografia> fotografias;
@@ -22,7 +23,8 @@ public class Album implements Serializable{
     private List<String> comentarios;
 
     public Album(String titulo,Bitmap capa ) {
-        this.id += 1;
+        this.id = sequenciaIDAlbum + 1;
+        sequenciaIDAlbum++;
         this.titulo = titulo;
         fotografias = new ArrayList<>();
         privado = true;
@@ -30,6 +32,10 @@ public class Album implements Serializable{
         data = new Date();
         comentarios = new ArrayList<>();
         this.capa = capa;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public String getTitulo() {
@@ -53,20 +59,14 @@ public class Album implements Serializable{
     }
 
     public void addFotografia(Bitmap imagem) {
-        Fotografia foto;
-        if(fotografias.isEmpty()) {
-            foto = new Fotografia(imagem, 1);
-        } else {
-            foto = new Fotografia(imagem, fotografias.size() + 1);
+        if(imagem != null) {
+            Fotografia foto = new Fotografia(imagem);
+            fotografias.add(foto);
         }
     }
 
-    public ArrayList<Bitmap> getAllPhotos() {
-        ArrayList<Bitmap> lista = new ArrayList<>();
-        for(Fotografia f: fotografias) {
-            lista.add(f.getImagem());
-        }
-        return lista;
+    public ArrayList<Fotografia> getAllPhotos() {
+        return fotografias;
     }
 
 }
