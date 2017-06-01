@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_criar_album2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
+            android:text="Selecione as fotografias que deseja"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:orientation="vertical"
+            android:background="@drawable/border">
+
+            <GridView
+                android:id="@+id/PhoneImageGrid"
+                android:numColumns="3"
+                android:verticalSpacing="10dp"
+                android:horizontalSpacing="10dp"
+                android:columnWidth="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:scrollbars="vertical" />
+
+            <Button
+                android:id="@+id/selectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:minWidth="200px" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:paddingTop="5dp">
+
+            <Button
+                android:id="@+id/botao_back2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:minHeight="35dp"
+                android:minWidth="35dp"
+                android:background="@drawable/ic_undo"/>
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:text="Finalizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_finalizar_album" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:text="Passo 2/2"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
