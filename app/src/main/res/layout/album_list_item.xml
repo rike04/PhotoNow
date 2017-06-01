@@ -7,7 +7,10 @@
         android:id="@+id/lista_album_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:fontFamily="serif"
+        android:textColor="@color/colorAccent"/>
 
     <ImageView
         android:id="@+id/list_item_image"
@@ -23,31 +26,36 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:orientation="horizontal"
-        android:layout_below="@id/list_item_image">
+        android:layout_below="@id/list_item_image"
+        android:layout_centerHorizontal="true">
 
         <Button
             android:id="@+id/edit_lista_album"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/ic_editar"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_editar"
+            android:layout_margin="10dp"/>
 
         <Button
             android:id="@+id/edit_lista_album2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/ic_share" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_share"
+            android:layout_margin="10dp"/>
 
         <Button
             android:id="@+id/shopping_cart_album"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/ic_shopping_cart"/>
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_shopping_cart"
+            android:layout_margin="10dp"/>
 
         <Button
             android:id="@+id/delete_btn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@drawable/ic_delete" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_delete"
+            android:layout_margin="10dp"/>
 
     </LinearLayout>
 
