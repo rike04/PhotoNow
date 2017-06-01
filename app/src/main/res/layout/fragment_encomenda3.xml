@@ -56,6 +56,12 @@
             android:background="@drawable/ic_undo"
             android:id="@+id/botao_undo_encomenda2"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Confirmar"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

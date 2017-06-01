@@ -52,6 +52,4 @@ public class EncomendaFragment3 extends Fragment {
     }
 
 
-
-
 }

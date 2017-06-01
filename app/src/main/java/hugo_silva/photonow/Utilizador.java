@@ -15,6 +15,9 @@ public class Utilizador implements Serializable {
     private final int id;
     private String username;
     private String password;
+    private String morada;
+    private char[] nif;
+    private char[] telemovel;
     private List<Album> albuns;
     private List<Encomenda> encomendas;
 
@@ -24,6 +27,8 @@ public class Utilizador implements Serializable {
         this.password = password;
         albuns = new ArrayList<>();
         encomendas = new ArrayList<>();
+        nif = new char[7];
+        telemovel = new char[9];
     }
 
     public Utilizador() {
@@ -150,7 +155,6 @@ public class Utilizador implements Serializable {
     public List<Encomenda> getEncomendas() {
         return encomendas;
     }
-
 
 
 }

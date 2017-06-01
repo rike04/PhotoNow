@@ -19,8 +19,7 @@ import java.util.List;
  */
 public class GaleriaFragment extends Fragment {
 
-    GridView grid;
-    ListView lista;
+    GridView lista;
 
     public GaleriaFragment() {
         // Required empty public constructor
@@ -34,7 +33,7 @@ public class GaleriaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_galeria, container, false);
 
         Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
-        lista = (ListView) view.findViewById(R.id.lista_imagens);
+        lista = (GridView) view.findViewById(R.id.lista_imagens);
 
         //lista.setAdapter(new CustomAdapter(getContext(), current_user.getAllPhotos()));
 
