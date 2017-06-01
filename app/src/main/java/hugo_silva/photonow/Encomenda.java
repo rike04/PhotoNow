@@ -1,10 +1,12 @@
 package hugo_silva.photonow;
 
+import java.io.Serializable;
+
 /**
  * Created by rike4 on 01/06/2017.
  */
 
-public class Encomenda {
+public class Encomenda implements Serializable {
 
     private static int sequenciaID = 0;
     private int id;

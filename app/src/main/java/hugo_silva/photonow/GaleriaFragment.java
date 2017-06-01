@@ -2,6 +2,7 @@ package hugo_silva.photonow;
 
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,9 +32,9 @@ public class GaleriaFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_galeria, container, false);
         Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
-        //lista = (GridView) view.findViewById(R.id.lista_imagens);
+        lista = (GridView) view.findViewById(R.id.galeria);
 
-        //lista.setAdapter(new CustomAdapter(getContext(), current_user.getAllPhotos()));
+        new LoadImagens().execute();
 
         /*
         GridView gridView = (GridView) view.findViewById(R.id.galeria);
@@ -49,6 +50,25 @@ public class GaleriaFragment extends Fragment {
         });
         */
         return view;
+
+    }
+
+    public class LoadImagens extends AsyncTask<Void,Void, Void> {
+
+        AdapterImagens adaptador;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Utilizador user =  ((MainActivity) getActivity()).getCurrentUser();
+            adaptador = new AdapterImagens(getContext(), user.getAlbuns());
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            lista.setAdapter(adaptador);
+        }
 
     }
 
