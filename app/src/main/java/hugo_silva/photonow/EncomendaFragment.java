@@ -24,6 +24,7 @@ public class EncomendaFragment extends Fragment {
         Bundle data = getArguments();
         fetchAlbum(data);
 
+        //Mostra o número de fotografias do album escolhido
         TextView nrPaginasView = (TextView) v.findViewById(R.id.encomenda_numero_paginas);
         nrPaginasView.setText(Integer.toString(album.getNumeroFotos()));
 
@@ -61,7 +62,12 @@ public class EncomendaFragment extends Fragment {
     }
 
     private void proximoPasso() {
-
+        Bundle data = getArguments();
+        if(data != null) {
+            EncomendaFragment2 e = new EncomendaFragment2();
+            e.setArguments(data);
+            Util.changeFragments(this, R.id.main_container, e);
+        }
     }
 
 

@@ -31,21 +31,21 @@
         android:text="Pequeno 2.99€"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button9"
+        android:id="@+id/botao_encomenda_pequena"
         android:layout_weight="1"/>
 
     <Button
         android:text="Médio 4.99€"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button10"
+        android:id="@+id/botao_encomenda_media"
         android:layout_weight="1"/>
 
     <Button
         android:text="Grande 6.99"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button11"
+        android:id="@+id/botao_encomenda_grande"
         android:layout_weight="1" />
 
     <LinearLayout
@@ -56,19 +56,13 @@
         android:paddingRight="30dp"
         android:orientation="horizontal">
 
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_undo"
-            android:id="@+id/imageView5"
-            android:paddingTop="10dp"/>
-
         <Button
-            android:text="Continuar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/encomenda_confirmar1" />
+            android:maxWidth="30dp"
+            android:maxHeight="30dp"
+            android:background="@drawable/ic_undo"
+            android:id="@+id/botao_undo_encomenda2"/>
 
     </LinearLayout>
 

@@ -16,12 +16,14 @@ public class Utilizador implements Serializable {
     private String username;
     private String password;
     private List<Album> albuns;
+    private List<Encomenda> encomendas;
 
     public Utilizador(String username, String password, int id) {
         this.id = id;
         this.username = username;
         this.password = password;
         albuns = new ArrayList<>();
+        encomendas = new ArrayList<>();
     }
 
     public Utilizador() {
@@ -138,5 +140,17 @@ public class Utilizador implements Serializable {
     public void setListaAlbuns(ArrayList<Album> novaLista) {
         this.albuns = novaLista;
     }
+
+    public void addEncomenda(Encomenda e) {
+        if(!encomendas.contains(e)) {
+            encomendas.add(e);
+        }
+    }
+
+    public List<Encomenda> getEncomendas() {
+        return encomendas;
+    }
+
+
 
 }
