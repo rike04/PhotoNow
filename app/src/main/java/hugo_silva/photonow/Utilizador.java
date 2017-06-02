@@ -156,5 +156,15 @@ public class Utilizador implements Serializable {
         return encomendas;
     }
 
+    public Fotografia getFotografia(int id) {
+        for(Album a: albuns) {
+            for(Fotografia f: a.getAllPhotos()) {
+                if(id == f.getId()) {
+                    return f;
+                }
+            }
+        }
+        return null;
+    }
 
 }

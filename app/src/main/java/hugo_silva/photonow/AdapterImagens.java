@@ -3,6 +3,7 @@ package hugo_silva.photonow;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -35,7 +36,9 @@ public class AdapterImagens extends BaseAdapter {
             for (Album a: l) {
                 ArrayList<Fotografia> listaFotos = a.getAllPhotos();
                 for(Fotografia f: listaFotos) {
-                    imagens[i] = BitmapFactory.decodeFile(f.getImagePath());
+
+                    Bitmap image = BitmapFactory.decodeFile(f.getImagePath());
+                    imagens[i] = Util.bitmapResizer(image, 100, 100);
                     fotografias[i] = f;
                     i++;
                 }

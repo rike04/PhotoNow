@@ -2,6 +2,7 @@ package hugo_silva.photonow;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,8 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -35,17 +38,21 @@ public class GaleriaFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                editaFoto(parent);
+                editaFoto(parent, position);
             }
         });
 
         return view;
     }
 
-    private void editaFoto(AdapterView<?> parent) {
+    private void editaFoto(AdapterView<?> parent, int position) {
         Editar_Foto editFoto = new Editar_Foto();
-        Fotografia f = (Fotografia) parent.getSelectedItem();
-        editFoto.setFotografia(f);
+        Fotografia f = (Fotografia) parent.getItemAtPosition(position);
+
+        Bundle data = new Bundle();
+        data.putInt("idFotografia", f.getId());
+        editFoto.setArguments(data);
+
         Util.changeFragments(this, R.id.main_container, editFoto);
     }
 

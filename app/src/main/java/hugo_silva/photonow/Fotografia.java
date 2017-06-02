@@ -24,6 +24,7 @@ public class Fotografia implements Serializable{
 
     public Fotografia(String imagem) {
         this.id = sequenciaID + 1;
+        sequenciaID++;
         dataUpload = new Date();
         descricao = "";
         localizacao = "";
@@ -38,4 +39,23 @@ public class Fotografia implements Serializable{
         return pathToImage;
     }
 
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public Date getDataUpload() {
+        return dataUpload;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }

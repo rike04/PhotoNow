@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if(checkFile()) {
-          //  read();
+            read();
             Log.d(getClass().getSimpleName(), "Ficheiro foi lido com sucesso.");
         }
     }
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.main_container, galeriaFragment, galeriaFragment.getTag()).commit();
 
         } else if (id == R.id.nav_sair) {
-           // write();
+            write();
             finish();
         }
 
@@ -158,5 +158,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         File file = new File(path);
         return file.exists();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        write();
+    }
+
 
 }
