@@ -38,7 +38,7 @@ public class AdapterImagens extends BaseAdapter {
                 for(Fotografia f: listaFotos) {
 
                     Bitmap image = BitmapFactory.decodeFile(f.getImagePath());
-                    imagens[i] = Util.bitmapResizer(image, 100, 100);
+                    imagens[i] = Util.bitmapResizer(image, 190, 190);
                     fotografias[i] = f;
                     i++;
                 }
