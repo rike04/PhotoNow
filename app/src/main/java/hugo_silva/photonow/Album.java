@@ -1,6 +1,5 @@
 package hugo_silva.photonow;
 
-import android.graphics.Bitmap;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,7 +13,7 @@ public class Album implements Serializable{
 
     private static int sequenciaIDAlbum = 0;
     private int id;
-    private Bitmap capa;
+    private String pathToCapa;
     private ArrayList<Fotografia> fotografias;
     private String titulo;
     private Boolean privado;
@@ -22,7 +21,7 @@ public class Album implements Serializable{
     private Date data;
     private List<String> comentarios;
 
-    public Album(String titulo,Bitmap capa ) {
+    public Album(String titulo,String capa) {
         this.id = sequenciaIDAlbum + 1;
         sequenciaIDAlbum++;
         this.titulo = titulo;
@@ -31,7 +30,7 @@ public class Album implements Serializable{
         descricao = null;
         data = new Date();
         comentarios = new ArrayList<>();
-        this.capa = capa;
+        pathToCapa = capa;
     }
 
     public int getId() {
@@ -54,11 +53,7 @@ public class Album implements Serializable{
         return fotografias.size();
     }
 
-    public Bitmap getImagemCapa() {
-        return capa;
-    }
-
-    public void addFotografia(Bitmap imagem) {
+    public void addFotografia(String imagem) {
         if(imagem != null) {
             Fotografia foto = new Fotografia(imagem);
             fotografias.add(foto);
@@ -69,4 +64,7 @@ public class Album implements Serializable{
         return fotografias;
     }
 
+    public String getPathToCapa() {
+        return pathToCapa;
+    }
 }

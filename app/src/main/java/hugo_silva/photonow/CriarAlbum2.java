@@ -1,5 +1,6 @@
 package hugo_silva.photonow;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -20,12 +21,14 @@ import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CriarAlbum2 extends Fragment {
 
-    private BitmapDrawable capa;
+    private String pathToCapa;
     private String titulo;
     private GridView grid;
     private List<Fotografia> arrayGrid;
@@ -35,6 +38,7 @@ public class CriarAlbum2 extends Fragment {
     private int count;
     private Bitmap[] thumbnails;
     private boolean[] thumbnailsselection;
+    private ArrayList<Uri> uris;
     private String[] arrPath;
     private ImageAdapter imageAdapter;
 
@@ -74,10 +78,15 @@ public class CriarAlbum2 extends Fragment {
         this.arrPath = new String[this.count];
         this.thumbnailsselection = new boolean[this.count];
 
+        uris = new ArrayList<>();
+
         for (int i = 0; i < this.count; i++) {
             imagecursor.moveToPosition(i);
             int id = imagecursor.getInt(image_column_index);
             int dataColumnIndex = imagecursor.getColumnIndex(MediaStore.Images.Media.DATA);
+            Uri imageUri= ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    imagecursor.getInt(imagecursor.getColumnIndex(MediaStore.Images.ImageColumns._ID)));
+            uris.add(imageUri);
             thumbnails[i] = MediaStore.Images.Thumbnails.getThumbnail(
                         getContext().getContentResolver(), id,
                     MediaStore.Images.Thumbnails.MICRO_KIND, null);
@@ -89,39 +98,11 @@ public class CriarAlbum2 extends Fragment {
         imagegrid.setAdapter(imageAdapter);
         imagecursor.close();
 
-        final Button selectBtn = (Button) v.findViewById(R.id.selectBtn);
-        selectBtn.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                final int len = thumbnailsselection.length;
-                int cnt = 0;
-                String selectImages = "";
-                for (int i =0; i<len; i++)
-                {
-                    if (thumbnailsselection[i]){
-                        cnt++;
-                        selectImages = selectImages + arrPath[i] + "|";;
-                    }
-                }
-                if (cnt == 0){
-                    Toast.makeText(getContext(),
-                            "Please select at least one image",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getContext(),
-                            "You've selected Total " + cnt + " image(s).",
-                            Toast.LENGTH_LONG).show();
-                    Log.d("SelectedImages", selectImages);
-                }
-            }
-        });
-
         return v;
     }
 
-    public void setCapa(BitmapDrawable capa) {
-        this.capa = capa;
+    public void setCapa(String capa) {
+        this.pathToCapa = capa;
     }
 
     public void setTitulo(String titulo) {
@@ -129,15 +110,21 @@ public class CriarAlbum2 extends Fragment {
     }
 
     private void criarNovoAlbum() {
-        if(titulo != null && capa != null) {
+        if(titulo != null && pathToCapa != null) {
 
                 //Cria o álbum e adiciona-o ao utilizador atual
-               Album novoAlbum = new Album(titulo, capa.getBitmap());
+               Album novoAlbum = new Album(titulo, pathToCapa);
               final int len = thumbnailsselection.length;
-              for (int i =0; i<len; i++)
-              {
+              for (int i =0; i<len; i++) {
                 if (thumbnailsselection[i]){
-                    novoAlbum.addFotografia(thumbnails[i]);
+                    String path = null;
+                    try {
+                        path = Util.getFilePath(getContext(), uris.get(i));
+                    } catch (URISyntaxException u) {
+                        u.printStackTrace();
+                    }
+                    novoAlbum.addFotografia(path);
+                    Log.d(getClass().getSimpleName(), "Foi inserida uma fotografia");
                 }
               }
               Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();

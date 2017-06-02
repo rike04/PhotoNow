@@ -14,6 +14,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -28,6 +30,7 @@ public class CriarAlbum extends Fragment {
     private AutoCompleteTextView viewTitulo;
     private EditText viewDescricao;
     private ImageView viewCapa;
+    private String pathToCapa;
 
     public CriarAlbum() {}
 
@@ -89,6 +92,7 @@ public class CriarAlbum extends Fragment {
 
             viewTitulo.setText(savedState.getString("titulo"));
             viewDescricao.setText(savedState.getString("descricao"));
+            pathToCapa = savedState.getString("pathToCapa");
 
             botaoAdicionar.setVisibility(View.GONE);
             botaoAlterar.setVisibility(View.VISIBLE);
@@ -112,14 +116,15 @@ public class CriarAlbum extends Fragment {
         if (requestCode == SELECT_PHOTO) {
             if (resultCode == RESULT_OK) {
                 //new BitmapPreparer().execute(data);
-                Uri selectedImage = data.getData();
-                InputStream imageStream = null;
+                Uri path = data.getData();
+                pathToCapa = null;
                 try {
-                    imageStream = getActivity().getContentResolver().openInputStream(selectedImage);
-                } catch (FileNotFoundException e) {
+                    pathToCapa = Util.getFilePath(getContext(), path);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
+
+                Bitmap yourSelectedImage = BitmapFactory.decodeFile(pathToCapa);
                 yourSelectedImage = Util.bitmapResizer(yourSelectedImage, 320, 240);
                 viewCapa.setImageBitmap(yourSelectedImage);
                 viewCapa.setVisibility(View.VISIBLE);
@@ -137,10 +142,12 @@ public class CriarAlbum extends Fragment {
             String titulo = viewTitulo.getText().toString();
             if(titulo != null && titulo.length() > 3) {
                 if(verificaTitulo(titulo)) {
+
                     CriarAlbum2 c = new CriarAlbum2();
                     c.setTitulo(viewTitulo.getText().toString());
-                    c.setCapa((BitmapDrawable) viewCapa.getDrawable());
+                    c.setCapa(pathToCapa);
                     Util.changeFragments(this, R.id.main_container, c);
+
                 } else {
                     viewTitulo.setError("Já existe um álbum com este título.");
                 }
@@ -164,19 +171,23 @@ public class CriarAlbum extends Fragment {
         viewTitulo = null;
         viewCapa = null;
         viewDescricao = null;
+        pathToCapa = null;
     }
 
     private Bundle saveState() {
         Bundle state = new Bundle();
         state.putString("titulo", viewTitulo.getText().toString());
         state.putString("descricao", viewDescricao.getText().toString());
+
         if(viewCapa.getDrawable() != null &&
                 ((BitmapDrawable) viewCapa.getDrawable()).getBitmap() !=null) {
 
             state.putByteArray("imagem",
                     Util.bitmapToArray(((BitmapDrawable)viewCapa.getDrawable()).getBitmap()));
+            state.putString("pathToCapa", pathToCapa);
         } else {
             state.putByteArray("imagem", null);
+            state.putString("pathToCapa", null);
         }
         return state;
     }

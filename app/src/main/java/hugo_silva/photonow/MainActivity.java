@@ -12,11 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Utilizador currentUser;
+    private String filename = "dados.srl";
 
     public static NavigationView navigationView;
     @Override
@@ -39,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         MainFragment mainFragment = new MainFragment();
         android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
-
                 .replace(R.id.main_container, mainFragment, mainFragment.getTag()).commit();
 
         getSupportActionBar().setTitle("Página Principal");
@@ -49,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Teste do Intent
         if(getIntent().hasExtra("current_user")) {
             currentUser = (Utilizador) getIntent().getSerializableExtra("current_user");
+        }
+
+        if(checkFile()) {
+          //  read();
+            Log.d(getClass().getSimpleName(), "Ficheiro foi lido com sucesso.");
         }
     }
 
@@ -92,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.main_container, galeriaFragment, galeriaFragment.getTag()).commit();
 
         } else if (id == R.id.nav_sair) {
-            saveToDB();
+           // write();
             finish();
         }
 
@@ -106,28 +120,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        saveToDB();
-    }
+    public void read(){
+        ObjectInputStream input;
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        saveToDB();
-    }
-
-    private void saveToDB() {
-        TinyDB database = new TinyDB(getBaseContext());
-        ArrayList<Object> utilizadores = database.getListObject("array", Utilizador.class);
-        for(Object o: utilizadores) {
-            Utilizador user = (Utilizador) o;
-            if(getCurrentUser().getId() == user.getId()) {
-                utilizadores.remove(user);
-                utilizadores.add(getCurrentUser());
-                Log.d(getClass().getSimpleName(), "Guardado");
-            }
+        try {
+            input = new ObjectInputStream(new FileInputStream(new File(
+                    new File(getFilesDir(),"")+File.separator+ filename)));
+             currentUser = (Utilizador) input.readObject();
+            Log.v("serialization","Person a="+ currentUser.getUsername());
+            input.close();
+        } catch (StreamCorruptedException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
+
+    public void write(){
+        ObjectOutput out;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(),"")+File.separator+ filename));
+            out.writeObject(getCurrentUser());
+            out.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Boolean checkFile() {
+        String path = getFilesDir().getAbsolutePath() + "/" + filename;
+        File file = new File(path);
+        return file.exists();
+    }
+
 }

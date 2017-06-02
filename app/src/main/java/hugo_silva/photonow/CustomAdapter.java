@@ -1,7 +1,10 @@
 package hugo_silva.photonow;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -56,8 +60,10 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.album_list_item, null);
         }
 
+        Bitmap image = BitmapFactory.decodeFile(list.get(position).getPathToCapa());
         ImageView imageView = (ImageView) view.findViewById(R.id.list_item_image);
-        imageView.setImageBitmap(list.get(position).getImagemCapa());
+        imageView.setImageBitmap(image);
+
 
         TextView tituloView = (TextView) view.findViewById(R.id.lista_album_title);
         tituloView.setText(list.get(position).getTitulo());
@@ -88,4 +94,5 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
 
         return view;
     }
+
 }

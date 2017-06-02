@@ -1,7 +1,9 @@
 package hugo_silva.photonow;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,24 +18,24 @@ public class Fotografia implements Serializable{
     private static int sequenciaID = 0;
     private final int id;
     private String descricao;
-    private Date dataUpload;
+    private final Date dataUpload;
     private String localizacao;
-    private Bitmap imagem;
+    private final String pathToImage;
 
-    public Fotografia(Bitmap imagem) {
-        this.imagem = imagem;
+    public Fotografia(String imagem) {
         this.id = sequenciaID + 1;
         dataUpload = new Date();
         descricao = "";
         localizacao = "";
-    }
-
-    public Bitmap getImagem() {
-        return imagem;
+        pathToImage = imagem;
     }
 
     public int getId() {
         return this.id;
+    }
+
+    public String getImagePath() {
+        return pathToImage;
     }
 
 }

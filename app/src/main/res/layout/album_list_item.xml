@@ -14,8 +14,8 @@
 
     <ImageView
         android:id="@+id/list_item_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="320dp"
+        android:layout_height="240dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/lista_album_title" />
 

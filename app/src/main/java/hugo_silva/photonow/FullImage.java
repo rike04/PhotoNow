@@ -18,7 +18,7 @@ public class FullImage extends AppCompatActivity {
         AdapterImagens adapterImagens = new AdapterImagens(this);
         List<ImageView> images = new ArrayList<>();
 
-        for (int i = 0; i < adapterImagens.getCount(); i++) {
+      /*  for (int i = 0; i < adapterImagens.getCount(); i++) {
             ImageView imageView = new ImageView(this);
             imageView.setImageBitmap(adapterImagens.imagens[i]);
             imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
@@ -34,6 +34,7 @@ public class FullImage extends AppCompatActivity {
         // Selected image id
         int position = getIntent().getExtras().getInt("id");
         viewPager.setCurrentItem(position);
-
+*/
     }
+
 }

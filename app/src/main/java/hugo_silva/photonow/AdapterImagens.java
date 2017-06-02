@@ -2,17 +2,21 @@ package hugo_silva.photonow;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterImagens extends BaseAdapter {
 
     private Context context;
-    public Bitmap[] imagens;
+    private Bitmap[] imagens;
+    private Fotografia[] fotografias;
 
     public AdapterImagens(Context c) {
         context = c;
@@ -21,6 +25,7 @@ public class AdapterImagens extends BaseAdapter {
     public AdapterImagens(Context c, List<Album> lista) {
         this.context = c;
         imagens = new Bitmap[totalAlbumSize(lista)];
+        fotografias = new Fotografia[imagens.length];
         setImagensIDS(lista);
     }
 
@@ -28,7 +33,12 @@ public class AdapterImagens extends BaseAdapter {
         int i = 0;
         while(i < imagens.length) {
             for (Album a: l) {
-
+                ArrayList<Fotografia> listaFotos = a.getAllPhotos();
+                for(Fotografia f: listaFotos) {
+                    imagens[i] = BitmapFactory.decodeFile(f.getImagePath());
+                    fotografias[i] = f;
+                    i++;
+                }
             }
         }
     }
@@ -48,12 +58,12 @@ public class AdapterImagens extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return imagens[position];
+        return fotografias[position];
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+       return fotografias[position].getId();
     }
 
     @Override
@@ -65,7 +75,6 @@ public class AdapterImagens extends BaseAdapter {
         imageView.setLayoutParams(new GridView.LayoutParams(225, 225));
         return imageView;
     }
-
 
 
 }

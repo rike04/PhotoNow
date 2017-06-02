@@ -20,56 +20,33 @@ import java.util.List;
  */
 public class GaleriaFragment extends Fragment {
 
-    GridView lista;
-
     public GaleriaFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_galeria, container, false);
         Utilizador current_user = ((MainActivity) getActivity()).getCurrentUser();
-        lista = (GridView) view.findViewById(R.id.galeria);
 
-        new LoadImagens().execute();
-
-        /*
-        GridView gridView = (GridView) view.findViewById(R.id.galeria);
+        final GridView gridView = (GridView) view.findViewById(R.id.galeria);
         gridView.setAdapter(new AdapterImagens(view.getContext(), current_user.getAlbunsPrivados()));
-
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(view.getContext(), FullImage.class);
-                i.putExtra("id", position);
-                startActivity(i);
+                editaFoto(parent);
             }
         });
-        */
-        return view;
 
+        return view;
     }
 
-    public class LoadImagens extends AsyncTask<Void,Void, Void> {
-
-        AdapterImagens adaptador;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            Utilizador user =  ((MainActivity) getActivity()).getCurrentUser();
-            adaptador = new AdapterImagens(getContext(), user.getAlbuns());
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            lista.setAdapter(adaptador);
-        }
-
+    private void editaFoto(AdapterView<?> parent) {
+        Editar_Foto editFoto = new Editar_Foto();
+        Fotografia f = (Fotografia) parent.getSelectedItem();
+        editFoto.setFotografia(f);
+        Util.changeFragments(this, R.id.main_container, editFoto);
     }
 
 }
