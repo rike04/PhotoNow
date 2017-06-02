@@ -1,12 +1,18 @@
 package hugo_silva.photonow;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -32,17 +38,16 @@ public class EncomendaFragment3 extends Fragment {
         Bundle data = getArguments();
 
         int idAlbum = data.getInt("AlbumKey");
-        Double valor = data.getDouble("AlbumValor");
+        Double valor = data.getDouble("AlbumValue");
 
         Album a = fetchAlbum(idAlbum);
 
         e = new Encomenda(valor, a);
 
-        TextView tipoAlbum = (TextView) v.findViewById(R.id.tipo_de_album);
-        tipoAlbum.setText(e.getTipo());
+        Double valorTotal = valor + a.getNumeroFotos();
 
-        TextView precoAlbum = (TextView) v.findViewById(R.id.textview_custo);
-        precoAlbum.setText(precoAlbum.getText().toString() + Double.toString(e.getPreco()));
+        EditText precoAlbum = (EditText) v.findViewById(R.id.textview_custo);
+        precoAlbum.setText(precoAlbum.getText().toString() + Double.toString(valorTotal));
 
         Button bConcluir = (Button) v.findViewById(R.id.confirmar_encomenda);
         bConcluir.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +56,18 @@ public class EncomendaFragment3 extends Fragment {
                 concluir();
             }
         });
+
+        Button bBack = (Button) v.findViewById(R.id.botao_undo_encomenda2);
+        bBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        ImageView imageView = (ImageView) v.findViewById(R.id.foto_capa_encomenda);
+        Bitmap image = BitmapFactory.decodeFile(a.getPathToCapa());
+        imageView.setImageBitmap(Util.bitmapResizer(image, 320, 240));
 
         return v;
     }
@@ -61,7 +78,8 @@ public class EncomendaFragment3 extends Fragment {
     }
 
     private void concluir() {
-        
+        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        Util.changeFragments(this, R.id.main_container, new AlbunsFragment());
     }
 
 }

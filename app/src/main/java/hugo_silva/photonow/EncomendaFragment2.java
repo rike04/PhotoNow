@@ -19,22 +19,31 @@ public class EncomendaFragment2 extends Fragment {
 
         //Atribuir os valores de cada encomenda como tag aos botões
         Button bpeq = ((Button) v.findViewById(R.id.botao_encomenda_pequena));
-        bpeq.setTag(2.99);
         Button bMed = ((Button) v.findViewById(R.id.botao_encomenda_media));
-        bMed.setTag(4.99);
         Button bGr = ((Button) v.findViewById(R.id.botao_encomenda_grande));
-        bGr.setTag(6.99);
 
-        View.OnClickListener listener = new View.OnClickListener() {
+
+        bpeq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                proximoPasso(v.getTag());
+              Double valor = 2.99;
+                proximoPasso(valor);
             }
-        };
-
-        bpeq.setOnClickListener(listener);
-        bMed.setOnClickListener(listener);
-        bGr.setOnClickListener(listener);
+        });
+        bMed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Double valor = 4.99;
+                proximoPasso(4.99);
+            }
+        });
+        bGr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Double valor = 6.99;
+                proximoPasso(6.99);
+            }
+        });
 
         Button botaoUndo = (Button) v.findViewById(R.id.botao_undo_encomenda2);
         botaoUndo.setOnClickListener(new View.OnClickListener() {
@@ -47,13 +56,8 @@ public class EncomendaFragment2 extends Fragment {
         return v;
     }
 
-    private void proximoPasso(Object valorObj) {
-        Double valor;
-        if(valorObj instanceof Double) {
-            valor = (Double) valorObj;
-        } else {
-            return;
-        }
+    private void proximoPasso(Double valor) {
+
         Bundle data = getArguments();
         data.putDouble("AlbumValue", valor);
 

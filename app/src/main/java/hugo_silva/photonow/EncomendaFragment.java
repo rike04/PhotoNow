@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 
 public class EncomendaFragment extends Fragment {
@@ -47,6 +49,9 @@ public class EncomendaFragment extends Fragment {
                 proximoPasso();
             }
         });
+
+        TextView text = (TextView) v.findViewById(R.id.titulo_album_encomenda);
+        text.setText(text.getText() + album.getTitulo());
 
         return v;
     }
