@@ -20,8 +20,8 @@
             android:id="@+id/button6"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             app:srcCompat="@drawable/ic_editar"
             android:id="@+id/imageView2"
             android:layout_marginTop="15dp"
@@ -29,8 +29,8 @@
             android:layout_marginRight="10dp"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             app:srcCompat="@drawable/ic_delete"
             android:id="@+id/imageView3"
             android:layout_marginTop="15dp"/>

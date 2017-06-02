@@ -36,6 +36,14 @@ public class EncomendaFragment2 extends Fragment {
         bMed.setOnClickListener(listener);
         bGr.setOnClickListener(listener);
 
+        Button botaoUndo = (Button) v.findViewById(R.id.botao_undo_encomenda2);
+        botaoUndo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
         return v;
     }
 

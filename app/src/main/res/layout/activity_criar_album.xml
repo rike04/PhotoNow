@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingBottom="30dp">
+            android:paddingBottom="15dp">
 
             <AutoCompleteTextView
                 android:id="@+id/titulo_album"

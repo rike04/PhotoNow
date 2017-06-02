@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -43,6 +44,14 @@ public class EncomendaFragment3 extends Fragment {
         TextView precoAlbum = (TextView) v.findViewById(R.id.textview_custo);
         precoAlbum.setText(precoAlbum.getText().toString() + Double.toString(e.getPreco()));
 
+        Button bConcluir = (Button) v.findViewById(R.id.confirmar_encomenda);
+        bConcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                concluir();
+            }
+        });
+
         return v;
     }
 
@@ -51,5 +60,8 @@ public class EncomendaFragment3 extends Fragment {
         return current_user.getAlbumbyId(idAlbum);
     }
 
+    private void concluir() {
+        
+    }
 
 }

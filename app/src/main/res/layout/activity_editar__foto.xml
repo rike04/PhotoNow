@@ -87,8 +87,6 @@
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:maxWidth="30dp"
-            android:maxHeight="30dp"
             android:background="@drawable/ic_undo"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="20dp"
