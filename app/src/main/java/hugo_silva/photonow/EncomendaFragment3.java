@@ -46,7 +46,7 @@ public class EncomendaFragment3 extends Fragment {
 
         Double valorTotal = valor + a.getNumeroFotos();
 
-        EditText precoAlbum = (EditText) v.findViewById(R.id.textview_custo);
+        TextView precoAlbum = (TextView) v.findViewById(R.id.textview_custo);
         precoAlbum.setText(precoAlbum.getText().toString() + Double.toString(valorTotal));
 
         Button bConcluir = (Button) v.findViewById(R.id.confirmar_encomenda);
