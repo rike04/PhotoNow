@@ -49,10 +49,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:maxWidth="30dp"
             android:maxHeight="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="20dp"
             android:background="@drawable/ic_undo"
             android:id="@+id/botao_undo_encomenda2"/>
 
@@ -66,7 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="3/3"/>
+            android:layout_marginLeft="20dp"
+            android:text="Passo 3/3"/>
 
     </LinearLayout>
 

@@ -33,6 +33,7 @@
             android:hint="Data"
             android:ems="10"
             android:id="@+id/text_view_data"
+            android:enabled="false"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -58,11 +59,48 @@
 
     </LinearLayout>
 
-    <Button
-        android:text="Concluir"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Descrição"
+            android:ems="10"
+            android:id="@+id/text_view_descricao"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/botao_concluir" />
+        android:paddingTop="10dp"
+        android:paddingRight="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:maxWidth="30dp"
+            android:maxHeight="30dp"
+            android:background="@drawable/ic_undo"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="20dp"
+            android:id="@+id/botao_undo_editar"/>
+
+        <Button
+            android:text="Concluir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/botao_concluir" />
+    </LinearLayout>
+
 
 </LinearLayout>
