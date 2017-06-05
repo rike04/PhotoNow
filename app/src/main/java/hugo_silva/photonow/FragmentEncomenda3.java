@@ -3,7 +3,6 @@ package hugo_silva.photonow;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,20 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EncomendaFragment3 extends Fragment {
+public class FragmentEncomenda3 extends Fragment {
 
     Encomenda e;
 
-    public EncomendaFragment3() {
+    public FragmentEncomenda3() {
         // Required empty public constructor
     }
 
@@ -79,7 +75,7 @@ public class EncomendaFragment3 extends Fragment {
 
     private void concluir() {
         getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        Util.changeFragments(this, R.id.main_container, new AlbunsFragment());
+        Util.changeFragments(this, R.id.main_container, new FragmentAlbuns());
     }
 
 }

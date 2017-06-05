@@ -1,10 +1,7 @@
 package hugo_silva.photonow;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -60,10 +56,11 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
             view = inflater.inflate(R.layout.album_list_item, null);
         }
 
-        Bitmap image = BitmapFactory.decodeFile(list.get(position).getPathToCapa());
         ImageView imageView = (ImageView) view.findViewById(R.id.list_item_image);
-        imageView.setImageBitmap(image);
 
+        String url = list.get(position).getPathToCapa();
+        ImageLoader imgLd = new ImageLoader(url, view, imageView);
+        imgLd.execute();
 
         TextView tituloView = (TextView) view.findViewById(R.id.lista_album_title);
         tituloView.setText(list.get(position).getTitulo());
@@ -83,7 +80,7 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
         shopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EncomendaFragment e = new EncomendaFragment();
+                FragmentEncomenda e = new FragmentEncomenda();
                 Bundle data = new Bundle();
                 data.putInt("AlbumKey", list.get(position).getId());
                 Log.d(getClass().getSimpleName(), Integer.toString(list.get(position).getId()));
@@ -94,5 +91,6 @@ public class CustomAdapter extends BaseAdapter implements ListAdapter {
 
         return view;
     }
+
 
 }

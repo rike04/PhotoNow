@@ -17,13 +17,13 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AlbunsFragment extends Fragment {
+public class FragmentAlbuns extends Fragment {
 
     private Utilizador current_user;
     private ListView listView;
     private TextView textoGrid;
 
-    public AlbunsFragment() {
+    public FragmentAlbuns() {
         // Required empty public constructor
     }
 
@@ -70,7 +70,7 @@ public class AlbunsFragment extends Fragment {
         viewBotaoNovo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Util.changeFragments(current, R.id.main_container, new CriarAlbum());
+                Util.changeFragments(current, R.id.main_container, new FragmentCriarAlbum());
             }
         });
     }

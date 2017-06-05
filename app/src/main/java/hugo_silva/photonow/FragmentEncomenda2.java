@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class EncomendaFragment2 extends Fragment {
+public class FragmentEncomenda2 extends Fragment {
 
-    public EncomendaFragment2() {}
+    public FragmentEncomenda2() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +61,7 @@ public class EncomendaFragment2 extends Fragment {
         Bundle data = getArguments();
         data.putDouble("AlbumValue", valor);
 
-        EncomendaFragment3 e = new EncomendaFragment3();
+        FragmentEncomenda3 e = new FragmentEncomenda3();
         e.setArguments(data);
         Util.changeFragments(this, R.id.main_container, e);
     }

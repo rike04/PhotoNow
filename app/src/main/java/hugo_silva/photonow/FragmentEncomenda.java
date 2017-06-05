@@ -3,7 +3,6 @@ package hugo_silva.photonow;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-
-public class EncomendaFragment extends Fragment {
+public class FragmentEncomenda extends Fragment {
     private Album album;
 
-    public EncomendaFragment() {}
+    public FragmentEncomenda() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,21 +56,29 @@ public class EncomendaFragment extends Fragment {
         super.onViewCreated(view, savedInstances);
         ImageView viewCapa = (ImageView) view.findViewById(R.id.capa_album_encomendado);
 
+        //Atribui o bitmap da capa do álbum à imageView
         Bitmap image = BitmapFactory.decodeFile(album.getPathToCapa());
-        Bitmap scaledImage = Util.bitmapResizer(image, 320, 240);
+        Bitmap scaledImage = Util.bitmapResizer(image,(int) getResources().getDimension(R.dimen.image_width),
+                (int) getResources().getDimension(R.dimen.image_height));
         viewCapa.setImageBitmap(scaledImage);
     }
 
+    /*
+     * Extrai o id do álbum de dentro do Bundle de dados que foi passado
+     */
     private void fetchAlbum(Bundle data) {
         int id = data.getInt("AlbumKey");
         Utilizador user = ((MainActivity) getActivity()).getCurrentUser();
         album = user.getAlbumbyId(id);
     }
 
+    /*
+     * Prepara o Bundle com os dados do album e envia para o próximo fragment da encomenda
+     */
     private void proximoPasso() {
         Bundle data = getArguments();
         if(data != null) {
-            EncomendaFragment2 e = new EncomendaFragment2();
+            FragmentEncomenda2 e = new FragmentEncomenda2();
             e.setArguments(data);
             Util.changeFragments(this, R.id.main_container, e);
         }

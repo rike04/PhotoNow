@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,13 +19,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CriarAlbum2 extends Fragment {
+public class FragmentCriarAlbum2 extends Fragment {
 
     private String pathToCapa;
     private String titulo;
@@ -46,7 +44,7 @@ public class CriarAlbum2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.activity_criar_album2, container, false);
+        View v = inflater.inflate(R.layout.fragment_criar_album2, container, false);
         arrayGrid = new ArrayList<>();
 
         //Adicionar onClickListener ao botão Finalizar
@@ -133,7 +131,7 @@ public class CriarAlbum2 extends Fragment {
                //Retira os dois ecrãs da criação do álbum da stack. Evita que ao pressionar o botão
                //para trás o utilizador tenha novamente acesso aos ecrãs de criação.
                getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-               Util.changeFragments(this, R.id.main_container, new AlbunsFragment());
+               Util.changeFragments(this, R.id.main_container, new FragmentAlbuns());
         }
     }
 

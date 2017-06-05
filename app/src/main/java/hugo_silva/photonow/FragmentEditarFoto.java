@@ -11,12 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
 
-public class Editar_Foto extends Fragment {
+public class FragmentEditarFoto extends Fragment {
 
     private Fotografia fotografia;
     private EditText textLocal, textData, descr;
@@ -25,7 +24,7 @@ public class Editar_Foto extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.activity_editar__foto, container, false);
+        View v = inflater.inflate(R.layout.fragment_editar__foto, container, false);
 
         Bundle data = getArguments();
         int posicao = data.getInt("idFotografia");
@@ -72,16 +71,16 @@ public class Editar_Foto extends Fragment {
     }
 
     private void concluirEdicao() {
+        //Se o campo da descrição ou o campo da localização sofreu modificações, guardar os dados
         if(descr.getText() != null && descr.getText().length() > 0) {
             fotografia.setDescricao(descr.getText().toString());
         }
-
         if(textLocal.getText() != null && textLocal.getText().length() > 0) {
             fotografia.setLocalizacao(textLocal.getText().toString());
         }
 
         getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        Util.changeFragments(this, R.id.main_container, new GaleriaFragment());
+        Util.changeFragments(this, R.id.main_container, new FragmentGaleria());
     }
 
 

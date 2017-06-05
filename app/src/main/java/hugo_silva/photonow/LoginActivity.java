@@ -40,25 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         //Verifica se a aplicação tem como conta pré-definida "admin1"
         verificaIntegridade();
 
-        /*
-        //Testes
-        Utilizador u1 = new Utilizador("Teste1", "teste1", 1);
-        Utilizador u2 = new Utilizador("Teste2", "teste2", 2);
-        Utilizador u3 = new Utilizador("Teste3", "teste3", 3);
-
-        ArrayList<Object> users = new ArrayList<>();
-        users.add(u1);
-        users.add(u2);
-        users.add(u3);
-
-        Repositorio r = new Repositorio();
-        r.addUtilizador(u1);
-        r.addUtilizador(u2);
-        r.addUtilizador(u3);
-
-        TinyDB t = new TinyDB(getApplicationContext());
-        t.putListObject("array", users); */
-
         //Instanciação
         usernameView = (AutoCompleteTextView) findViewById(R.id.username);
         passwordView = (EditText) findViewById(R.id.password);

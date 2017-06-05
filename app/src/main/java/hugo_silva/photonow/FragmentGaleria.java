@@ -1,9 +1,6 @@
 package hugo_silva.photonow;
 
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,19 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
-
-import java.util.List;
-
-import static android.content.Context.MODE_PRIVATE;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GaleriaFragment extends Fragment {
+public class FragmentGaleria extends Fragment {
 
-    public GaleriaFragment() {
+    public FragmentGaleria() {
         // Required empty public constructor
     }
 
@@ -46,7 +38,7 @@ public class GaleriaFragment extends Fragment {
     }
 
     private void editaFoto(AdapterView<?> parent, int position) {
-        Editar_Foto editFoto = new Editar_Foto();
+        FragmentEditarFoto editFoto = new FragmentEditarFoto();
         Fotografia f = (Fotografia) parent.getItemAtPosition(position);
 
         Bundle data = new Bundle();

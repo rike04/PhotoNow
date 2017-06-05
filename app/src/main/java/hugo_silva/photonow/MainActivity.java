@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,7 +20,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         manager.beginTransaction()
                 .replace(R.id.main_container, mainFragment, mainFragment.getTag()).commit();
 
-        getSupportActionBar().setTitle("Página Principal");
+        getSupportActionBar().setTitle("PhotoNow");
 
         navigationView.getMenu().getItem(0).setChecked(true);
 
@@ -94,16 +92,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.main_container, mainFragment, mainFragment.getTag()).commit();
 
         } else if (id == R.id.nav_albuns) {
-            AlbunsFragment albunsFragment = new AlbunsFragment();
+            FragmentAlbuns fragmentAlbuns = new FragmentAlbuns();
             android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
-                    .replace(R.id.main_container, albunsFragment, albunsFragment.getTag()).commit();
+                    .replace(R.id.main_container, fragmentAlbuns, fragmentAlbuns.getTag()).commit();
 
         } else if (id == R.id.nav_galeria) {
-            GaleriaFragment galeriaFragment = new GaleriaFragment();
+            FragmentGaleria fragmentGaleria = new FragmentGaleria();
             android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction()
-                    .replace(R.id.main_container, galeriaFragment, galeriaFragment.getTag()).commit();
+                    .replace(R.id.main_container, fragmentGaleria, fragmentGaleria.getTag()).commit();
 
         } else if (id == R.id.nav_sair) {
             write();

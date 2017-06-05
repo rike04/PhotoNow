@@ -15,13 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-
 import static android.app.Activity.RESULT_OK;
 
-public class CriarAlbum extends Fragment {
+public class FragmentCriarAlbum extends Fragment {
 
     private static final int SELECT_PHOTO = 100;
     private Button botaoAdicionar;
@@ -32,13 +28,13 @@ public class CriarAlbum extends Fragment {
     private ImageView viewCapa;
     private String pathToCapa;
 
-    public CriarAlbum() {}
+    public FragmentCriarAlbum() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater,final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.activity_criar_album, container, false);
+        View v = inflater.inflate(R.layout.fragment_criar_album, container, false);
 
         viewTitulo = (AutoCompleteTextView) v.findViewById(R.id.titulo_album);
         viewCapa = (ImageView) v.findViewById(R.id.img_capa_album);
@@ -143,7 +139,7 @@ public class CriarAlbum extends Fragment {
             if(titulo != null && titulo.length() > 3) {
                 if(verificaTitulo(titulo)) {
 
-                    CriarAlbum2 c = new CriarAlbum2();
+                    FragmentCriarAlbum2 c = new FragmentCriarAlbum2();
                     c.setTitulo(viewTitulo.getText().toString());
                     c.setCapa(pathToCapa);
                     Util.changeFragments(this, R.id.main_container, c);
