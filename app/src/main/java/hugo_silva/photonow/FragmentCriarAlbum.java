@@ -58,7 +58,6 @@ public class FragmentCriarAlbum extends Fragment {
             }
         });
 
-
         //Botões de retorno e avanço do processo de criação de um álbum
         Button botaoProximoPasso = (Button) v.findViewById(R.id.botao_prox_passo1);
         botaoProximoPasso.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +110,6 @@ public class FragmentCriarAlbum extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == SELECT_PHOTO) {
             if (resultCode == RESULT_OK) {
-                //new BitmapPreparer().execute(data);
                 Uri path = data.getData();
                 pathToCapa = null;
                 try {
@@ -197,34 +195,5 @@ public class FragmentCriarAlbum extends Fragment {
         outState.putBundle("album", (savedState != null) ? savedState : saveState());
     }
 
-//    private class BitmapPreparer extends AsyncTask<Intent,Void, Void> {
-//
-//        ProgressDialog pdLoading = ProgressDialog.show(getActivity(), "A carregar...",
-//                "Por favor, aguarde...", true);
-//        Bitmap yourSelectedImage;
-//
-//        @Override
-//        protected Void doInBackground(Intent... params) {
-//            Intent i = params[0];
-//            Uri selectedImage = i.getData();
-//            InputStream imageStream = null;
-//            try {
-//                imageStream = getActivity().getContentResolver().openInputStream(selectedImage);
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//            yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void result) {
-//            viewCapa.setImageBitmap(yourSelectedImage);
-//            viewCapa.setVisibility(View.VISIBLE);
-//            botaoAdicionar.setVisibility(View.GONE);
-//            pdLoading.dismiss();
-//        }
-//
-//    }
 
 }
