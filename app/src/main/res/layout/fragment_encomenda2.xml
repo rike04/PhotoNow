@@ -6,27 +6,27 @@
 
     <TextView
         style="@style/tituloTexto"
-        android:text="Encomenda" />
+        android:text="@string/titulo_enc" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selecione o tamanho do Álbum:"
+        android:text="@string/select_tamanho_alb"
         android:textSize="20sp" />
 
     <Button
         style="@style/botaoTamanhoEncomenda"
-        android:text="Pequeno 2.99€"
+        android:text="@string/album_pequeno"
         android:id="@+id/botao_encomenda_pequena" />
 
     <Button
         style="@style/botaoTamanhoEncomenda"
-        android:text="Médio 4.99€"
+        android:text="@string/album_medio"
         android:id="@+id/botao_encomenda_media" />
 
     <Button
         style="@style/botaoTamanhoEncomenda"
-        android:text="Grande 6.99"
+        android:text="@string/album_grande"
         android:id="@+id/botao_encomenda_grande" />
 
     <LinearLayout
@@ -43,7 +43,7 @@
 
         <TextView
             style="@style/numeroPassos"
-            android:text="Passo 2/3"/>
+            android:text="@string/passo_2_3"/>
 
     </LinearLayout>
 

@@ -16,7 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:text="Data:"
+            android:text="@string/input_data"
             android:textSize="20sp"
             android:layout_width="60dp"
             android:layout_height="wrap_content"/>
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Data"
+            android:hint="@string/hint_data"
             android:ems="10"
             android:id="@+id/text_view_data"
             android:enabled="false"
@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Local"
+            android:hint="@string/hint_local"
             android:ems="10"
             android:id="@+id/text_view_local"
             android:layout_weight="1" />
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Descrição"
+            android:hint="@string/hint_descr"
             android:ems="10"
             android:id="@+id/text_view_descricao"
             android:layout_weight="1" />
@@ -86,7 +86,7 @@
             android:id="@+id/botao_undo_editar"/>
 
         <Button
-            android:text="Concluir"
+            android:text="@string/finalizar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

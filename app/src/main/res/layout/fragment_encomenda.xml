@@ -22,7 +22,6 @@ android:orientation="vertical">
         android:layout_gravity="center"
         android:id="@+id/capa_album_encomendado"/>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,13 +31,15 @@ android:orientation="vertical">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Número de Páginas:"/>
+            android:text="@string/input_numero_pag"/>
+
         <TextView
             android:id="@+id/encomenda_numero_paginas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="0"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +56,7 @@ android:orientation="vertical">
             android:id="@+id/botao_undo_encomenda"/>
 
         <Button
-            android:text="Confirmar"
+            android:text="@string/confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -63,7 +64,7 @@ android:orientation="vertical">
 
         <TextView
             style="@style/numeroPassos"
-            android:text="Passo 1/3"/>
+            android:text="@string/passo_1_3"/>
 
     </LinearLayout>
 

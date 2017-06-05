@@ -62,7 +62,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Descrição do álbum"
+            android:hint="@string/hint_descr"
             android:layout_gravity="center"
             android:ems="8"
             android:id="@+id/descricao_album" />
@@ -80,7 +80,7 @@
 
             <Button
                 android:layout_marginTop="20dp"
-                android:text="Próximo Passo"
+                android:text="@string/prox_passo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/botao_prox_passo1"
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:text="Passo 1/2"/>
+                android:text="@string/passo_1_2"/>
 
         </RelativeLayout>
 

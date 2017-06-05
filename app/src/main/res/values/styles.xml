@@ -55,6 +55,14 @@
         <item name="android:layout_width">@dimen/botao_undo_w</item>
         <item name="android:layout_margin">10dp</item>
     </style>
+    
+    <style name="botoesLogin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorBotoes</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/corTextoLight</item>
+    </style>
 
     <!--Texto -->
     <style name="tituloTexto">

@@ -3,23 +3,16 @@ package hugo_silva.photonow;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
-import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -198,7 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                 return u;
             }
         }
-        return null;
+          return null;
     }
 
 }

@@ -21,10 +21,29 @@
     <string name="error_incorrect_password">A palavra-passe está incorreta.</string>
     <string name="error_field_required">Este campo deve ser preenchido.</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+        completions."</string>
     <string name="nome_album">Nome do Álbum</string>
+    <string name="inicio_sessao_face">Iniciar sessão com o Facebook</string>
+    <string name="regista_te">Ainda não tens uma conta? Regista-te.</string>
+    <string name="ou">ou</string>
+    <string name="hint_descr">Descrição do álbum</string>
+    <string name="prox_passo">Próximo Passo</string>
+    <string name="passo_1_2">Passo 1/2</string>
+    <string name="passo_2_2">Passo 2/2</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="hint_local">Local</string>
+    <string name="hint_data">Data</string>
+    <string name="input_data">Data:</string>
+    <string name="input_numero_pag">Número de Páginas:</string>
+    <string name="confirm">Confirmar</string>
+    <string name="passo_1_3">Passo 1/3</string>
+    <string name="titulo_enc">Encomenda</string>
+    <string name="select_tamanho_alb">Selecione o tamanho do Álbum:</string>
+    <string name="album_pequeno">Pequeno 2.99€</string>
+    <string name="album_medio">Médio 4.99€</string>
+    <string name="album_grande">Grande 6.99</string>
+    <string name="passo_2_3">Passo 2/3</string>
+    <string name="input_custo">Custo Total:</string>
+    <string name="passo_3_3">Passo 3/3</string>
+    <string name="add_foto">+ Nova Foto</string>
 </resources>

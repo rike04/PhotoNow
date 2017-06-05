@@ -52,7 +52,7 @@
 
             <Button
                 android:layout_marginTop="20dp"
-                android:text="Finalizar"
+                android:text="@string/finalizar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_finalizar_album"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:text="Passo 2/2"/>
+                android:text="@string/passo_2_2"/>
 
         </RelativeLayout>
 

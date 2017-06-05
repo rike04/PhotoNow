@@ -9,7 +9,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:text="+ Nova Foto"
+            android:text="@string/add_foto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button6"/>

@@ -64,14 +64,9 @@
 
             <Button
                 android:id="@+id/sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/botoesLogin"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textColor="@color/corTextoLight"
-                android:textStyle="bold"
-                android:background="@color/colorBotoes"/>
+                android:text="@string/action_sign_in" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -100,7 +95,7 @@
                     android:layout_gravity="center"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
-                    android:text="ou" />
+                    android:text="@string/ou" />
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
@@ -113,22 +108,16 @@
 
             <Button
                 android:id="@+id/x"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/botoesLogin"
                 android:layout_marginTop="5dp"
-                android:text="Iniciar sessão com o Facebook"
-                android:textColor="@color/corTextoLight"
-                android:textStyle="bold"
-                android:background="@color/colorBotoes"/>
+                android:text="@string/inicio_sessao_face"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Ainda não tens uma conta? Regista-te."
-                android:fontFamily="sans-serif" />
-
+                android:text="@string/regista_te"
+                android:fontFamily="sans-serif"/>
 
         </LinearLayout>
 
